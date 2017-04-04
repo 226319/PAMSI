@@ -14,10 +14,11 @@ class Node {
 
 	public:
 
+	Node();
 	Node( Element, Node& );
 	~Node();
-	Node& SetNext();
-	const Node& Next() const;
+	void SetNext(Node*);
+	Node* Next() const;
 	const Element& GetElement() const;
 	Element& SetElement();
 
