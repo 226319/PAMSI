@@ -1,8 +1,6 @@
 #ifndef ILIST_HH
 #define ILIST_HH
 
-#include "TypeDefs.hh"
-
 
 class IList {
 

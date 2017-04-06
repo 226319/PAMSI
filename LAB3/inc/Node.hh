@@ -1,7 +1,6 @@
 #ifndef NODE_HH
 #define NODE_HH
 
-#include "TypeDefs.hh"
 #include "Headers.hh"
 
 

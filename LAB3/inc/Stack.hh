@@ -6,6 +6,7 @@
 #include "IStack.hh"
 
 #define EMPTY 0
+#define BOTTOM 0
 
 class Stack: public Testowalny, public IStack
 { 
@@ -16,12 +17,12 @@ class Stack: public Testowalny, public IStack
 
 		bool IsOverflowed();
 		Stack& operator=( const Stack&);
+		bool HideElement(const unsigned int&, const int&);
 	
 	public:
 	
 		Stack();
 		Stack(const unsigned int&);
-		bool HideElement(const unsigned int&, const int&);
 		
 		// IStack methods
 		virtual ~Stack();
@@ -33,7 +34,7 @@ class Stack: public Testowalny, public IStack
 	
 		// Testowalny methods
 		virtual void Testuj( const unsigned int&, const unsigned int&, const int&);
-
+		virtual bool PrzygotujDoTestu(const unsigned int&, const unsigned int&);
 };
 
 

@@ -30,7 +30,78 @@ List::~List() {
 /*------------------------------| End |---------------------------------*/
 
 
+/*------------------------------| Private Methods |---------------------------------*/
 
+bool List::HideElement( const unsigned int& position, const int& Key) {
+	bool state_var = Add(Key,0);
+
+
+	if ( state_var ) {
+
+		for ( unsigned int i = 1; i < position; ++i ) {
+			state_var = Add(Key-1, 0);
+			if ( !state_var ) break;
+		}
+		
+	}
+
+	return state_var;
+}
+
+
+void  List::InsertNode( Node* Previous, Node* NodeToInsert) {
+
+				NodeToInsert->SetNext(Previous->Next());
+				Previous->SetNext(NodeToInsert);
+}
+
+void List::InsertToBeginning(Node* NodeToInsert) {
+				
+		NodeToInsert->SetNext(_ptrToFirstNode);
+		_ptrToFirstNode = NodeToInsert;
+}
+
+void List::InsertToEnd(Node* NodeToInsert) {
+				
+				_ptrToLastNode->SetNext(NodeToInsert);
+				NodeToInsert->SetNext(nullptr);
+				_ptrToLastNode=NodeToInsert;
+}
+
+Node* List::GoToNode(const unsigned int& pos) {
+				
+	Node* nptr = _ptrToFirstNode;
+	
+	for ( unsigned int i = 1; i < pos; ++i ) {
+		nptr = nptr->Next();
+	}
+	return nptr;
+}
+
+
+void List::RemoveFromEnd(Node* NodeBeforeLast) {
+		
+		NodeBeforeLast->SetNext(nullptr);
+		delete _ptrToLastNode;
+		_ptrToLastNode = NodeBeforeLast;
+
+}
+
+void List::RemoveFromBeginning() {
+	Node* nptr = _ptrToFirstNode;
+	_ptrToFirstNode = _ptrToFirstNode->Next();
+	delete nptr;
+}
+
+void  List::RemoveNode( Node* Previous, Node* NodeToRemove) {
+
+				Previous->SetNext( NodeToRemove->Next() );
+				NodeToRemove->SetNext( nullptr );
+				delete NodeToRemove;
+}
+
+
+/*----------------------------| End |------------------------------*/
 
 /*----------------------------| Public Methods |------------------------------*/
 
@@ -46,31 +117,22 @@ bool List::Add ( const int& elem, const unsigned int& posNum ) {
 			
 			if ( !_NumbOfNodes ) {  // jezeli lista jest pusta
 			
-				newNode->SetNext(_ptrToFirstNode);
-					_ptrToFirstNode = newNode;
-					_ptrToLastNode = newNode;
+				InsertToBeginning(newNode);
+				_ptrToLastNode = newNode;
 			
 			} else if ( posNum == _NumbOfNodes){  // jezeli dodajemy na koniec
 				
-				_ptrToLastNode->SetNext(newNode);
-				newNode->SetNext(nullptr);
-				_ptrToLastNode=newNode;
+				InsertToEnd(newNode);		
 			
 			} else if ( posNum == 0 ) {   // jezeli dodajemy na poczatek
-				
-				newNode->SetNext(_ptrToFirstNode);
-				_ptrToFirstNode = newNode;
+			
+				InsertToBeginning(newNode);
 
 			} else {  // jezeli dodajemy posrodku
 
-				Node* nptr = _ptrToFirstNode;
-
-				for ( unsigned int i = 1; i < posNum; ++i ) {
-					nptr = nptr->Next();
-				}
-
-				newNode->SetNext(nptr);
-				nptr->SetNext(newNode);
+				Node* nptr = GoToNode(posNum);
+				InsertNode(nptr,newNode);
+			
 			}
 
 				++_NumbOfNodes;
@@ -100,38 +162,23 @@ bool List::Remove(const unsigned int& posNum) {
 			Node* nptr = _ptrToFirstNode;
 			
 			if ( posNum == _NumbOfNodes-1 ){  // jezeli usuwamy z konca
-				
-				for ( unsigned int i = 1; i < posNum; ++i ) { 
-					//idziemy do przed ostatniego wezla 
-					nptr = nptr->Next();
-				}
-				
-				nptr->SetNext(nullptr);
-				delete _ptrToLastNode;
-				_ptrToLastNode = nptr;
+			
+				nptr = GoToNode(posNum);
+				RemoveFromEnd(nptr);	
 
 				if ( _NumbOfNodes == 1 ) {   // w przypadku jedynego elementu
 					_ptrToFirstNode = nullptr;
 				}
 
 			} else if ( posNum == 0 ) {   // jezeli usuwamy z poczatku
-				
-				_ptrToFirstNode = _ptrToFirstNode->Next();
-				delete nptr;	
+			
+				RemoveFromBeginning();
 
 			} else {  // jezeli usuwamy posrodku
 
-				Node* nptr2 = _ptrToFirstNode;
+				nptr = GoToNode(posNum);
+				RemoveNode(nptr, nptr->Next());	
 
-				for ( unsigned int i = 1; i < posNum; ++i ) {
-					nptr = nptr->Next();
-				}
-				
-				nptr2 = nptr->Next();
-				nptr->SetNext( nptr2->Next() );
-
-				nptr2->SetNext( nullptr );
-				delete nptr2;
 			}
 
 				--_NumbOfNodes;
@@ -191,23 +238,10 @@ int List::Find(const int& Key) {
 	return posi;
 }
 
-
-bool List::HideElement( const unsigned int& position, const int& Key) {
-	bool state_var = Add(Key,0);
-
-
-	if ( state_var ) {
-
-		for ( unsigned int i = 1; i < position; ++i ) {
-			state_var = Add(Key-1, 0);
-			if ( !state_var ) break;
-		}
-		
-	}
-
-	return state_var;
+bool List::PrzygotujDoTestu(const unsigned int& NumOfElem, const unsigned int& Key) {
+	
+	return HideElement(NumOfElem,Key);
 }
-
 
 
 void List::Testuj(const unsigned int& Key, const unsigned int& NuOfElem, const int& Nil ) {

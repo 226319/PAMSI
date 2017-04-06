@@ -141,6 +141,10 @@ int Stack::Find( const int& Key ) {
 	return tmp_pos;
 }
 
+bool Stack::PrzygotujDoTestu(const unsigned int& NumOfElem, const unsigned int& Key) {
+	*this = Stack(NumOfElem);	
+	return HideElement(BOTTOM,Key);
+}
 
 
 

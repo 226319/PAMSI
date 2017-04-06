@@ -87,6 +87,7 @@ bool Czasomierz::ZmierzCzas( Testowalny & Obiekt, const unsigned int & WarPocz, 
 	if ( WarPocz ) {
 		srand(time(NULL));
 		this->LiczbaElementow() = LiczbaElementow;
+		Obiekt.PrzygotujDoTestu(LiczbaElementow, WarPocz);
 		for ( unsigned int i = 0; i < this->LiczbaRealizacji(); ++i){
 			 this->CzasStart();
 			 Obiekt.Testuj(WarPocz, this->LiczbaElementow(), rand() % PRZEDZIAL);

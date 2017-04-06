@@ -1,8 +1,6 @@
 #ifndef ISTACK_HH
 #define ISTACK_HH
 
-#include "TypeDefs.hh"
-
 class IStack {
 
 

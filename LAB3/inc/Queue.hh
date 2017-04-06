@@ -12,9 +12,9 @@ class Queue: public IQueue, public Testowalny {
 
 	List _Queue;
 
+	bool HideElement( const unsigned int&, const int& );
 	public:
 
-	bool HideElement( const unsigned int&, const int& );
 
 	// IQueue methods
 	virtual unsigned int Size() const;
@@ -25,7 +25,7 @@ class Queue: public IQueue, public Testowalny {
 	
 	// Testowalny methods	
 	virtual void Testuj(const unsigned int&, const unsigned int&, const int&);
-
+	virtual bool PrzygotujDoTestu(const unsigned int&, const unsigned int&);
 };
 
 

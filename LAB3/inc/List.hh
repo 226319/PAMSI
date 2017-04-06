@@ -14,10 +14,19 @@ class List: public IList, public Testowalny
 	Node* _ptrToLastNode;
 	unsigned int _NumbOfNodes;
 
+	void InsertNode(Node*, Node*);
+	void InsertToBeginning(Node*);
+	void InsertToEnd(Node*);
+	
+	void RemoveNode(Node*, Node*);
+	void RemoveFromBeginning();
+	void RemoveFromEnd(Node*);
+	Node* GoToNode(const unsigned int&);
+	
 	public:
 
+	bool HideElement(const unsigned int&, const int&);
 	List();
-	virtual bool HideElement(const unsigned int&, const int&);
 
 	// IList methods
 	virtual ~List();
@@ -29,6 +38,7 @@ class List: public IList, public Testowalny
 	
 	// Testowalny methods	
 	virtual void Testuj(const unsigned int&, const unsigned int&, const int&);
+	virtual bool PrzygotujDoTestu(const unsigned int&, const unsigned int&);
 
 };
 

@@ -1,8 +1,6 @@
 #ifndef IQUEUE_HH
 #define IQUEUE_HH
 
-#include "TypeDefs.hh"
-
 class IQueue {
 
 	public:

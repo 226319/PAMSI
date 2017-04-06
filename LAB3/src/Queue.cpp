@@ -91,6 +91,11 @@ int Queue::Find( const int& Key ) {
 	return tmp;
 }
 
+bool Queue::PrzygotujDoTestu(const unsigned int& NumOfElem, const unsigned int& Key) {
+	
+	return HideElement(NumOfElem,Key);
+}
+
 
 /*----------------------------------| End |------------------------------------------*/
 
