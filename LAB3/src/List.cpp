@@ -159,10 +159,10 @@ bool List::Remove(const unsigned int& posNum) {
    
 	} else if ( posNum < _NumbOfNodes ) {
 
-			Node* nptr = _ptrToFirstNode;
 			
 			if ( posNum == _NumbOfNodes-1 ){  // jezeli usuwamy z konca
 			
+				Node* nptr = _ptrToFirstNode;
 				nptr = GoToNode(posNum);
 				RemoveFromEnd(nptr);	
 
@@ -176,6 +176,7 @@ bool List::Remove(const unsigned int& posNum) {
 
 			} else {  // jezeli usuwamy posrodku
 
+				Node* nptr = _ptrToFirstNode;
 				nptr = GoToNode(posNum);
 				RemoveNode(nptr, nptr->Next());	
 
