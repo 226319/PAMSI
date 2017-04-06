@@ -1,11 +1,12 @@
 #include "Node.hh"
 
+/*--------------------------------| Constructors and destructor |----------------------------*/
 Node::Node() {
 	_Elem = 0;
 	_PtrToNextNode = nullptr;
 }
 
-Node::Node( Element elem, Node& node ) {
+Node::Node( int elem, Node& node ) {
 
 	_Elem = elem;
 	_PtrToNextNode = &node;
@@ -21,6 +22,12 @@ Node::~Node() {
 	}
 }
 
+/*-------------------------------------| END |----------------------------*/
+
+
+
+/*-----------------------------| Public methods |----------------------------*/
+
 void Node::SetNext(Node* node) {
 	_PtrToNextNode = node;
 }
@@ -29,17 +36,17 @@ Node* Node::Next() const {
 	return _PtrToNextNode;
 }
 
-const Element& Node::GetElement() const {
+const int& Node::GetElement() const {
 	return _Elem;
 }
 
-Element& Node::SetElement() {
+int& Node::SetElement() {
 	return _Elem;
 }
 
 
 
-
+/*--------------------------------| End |------------------------------------*/
 
 
 

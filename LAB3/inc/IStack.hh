@@ -9,10 +9,10 @@ class IStack {
 	public:
 		virtual ~IStack() {} ;
 		virtual unsigned int Size() const =0;
-		virtual bool Push( const Element& ) =0;
-		virtual Element Pop() =0;
+		virtual bool Push( const int& ) =0;
+		virtual int Pop() =0;
 		virtual bool IsEmpty()=0 ;
-		virtual int Find(const Element&)=0;
+		virtual int Find(const int&)=0;
 
 };
 

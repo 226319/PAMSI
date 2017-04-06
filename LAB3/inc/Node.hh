@@ -8,19 +8,19 @@
 class Node {
 
 
-	Element _Elem;
+	int _Elem;
 	Node* _PtrToNextNode;
-
 
 	public:
 
 	Node();
-	Node( Element, Node& );
+	Node(int,Node& );
 	~Node();
-	void SetNext(Node*);
+	
+	void  SetNext(Node*);
 	Node* Next() const;
-	const Element& GetElement() const;
-	Element& SetElement();
+	const int& GetElement() const;
+	int&  SetElement();
 
 
 };

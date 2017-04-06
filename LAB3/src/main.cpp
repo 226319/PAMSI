@@ -1,31 +1,62 @@
 #include "Headers.hh"
+#include "Czasomierz.hh"
 #include "Stack.hh"
 #include "Queue.hh"
 #include "Node.hh"
 #include "List.hh"
+#define LICZBA_POMIAROW 9
 
-#define TEST 10
+
+
 int main() {
 
-	Node node, node1;
-	Node* node_ptr = &node1;
-	List list;
+	Czasomierz timer(LICZBA_REALIZACJI);
+	const unsigned int Key = 44;
+	const unsigned int Position = 0;
 
-	node.SetElement() = 5;
-	node.SetNext( node_ptr );
-	node.Next()->SetElement() = 4;
-	std::cerr << node1.GetElement() << std::endl;
+	std::ofstream file;
+	file.open("Stack.txt");
 
+	for ( int idx = 1; idx <= LICZBA_POMIAROW; ++idx ){ 
+		int LiczbaElem = pow(PODSTAWA, idx);
+		Stack obiekt(LiczbaElem);
+		std::cerr << "Iter: " << idx << std::endl;
 
-	list.Add(-4,0);
-	list.Add(-3,0);
-	std::cerr << list.Size() << std::endl;
-	std::cerr << list.Add(-4,2) << std::endl;
-	list.Add(3,5);
-	std::cerr << list.Size() << std::endl;
+		obiekt.HideElement(Position,Key);
+		timer.ZmierzCzas( obiekt,Key, pow( PODSTAWA, idx ) );
+		timer.SkrocZapiszDo(file);	
+	}
 
+	file.close();
 
+	file.open("Queue.txt");
 
+	for ( int idx = 1; idx <= LICZBA_POMIAROW; ++idx ){ 
+		int LiczbaElem = pow(PODSTAWA, idx);
+		Queue obiekt;
+		std::cerr << "Iter: " << idx << std::endl;
 
+		obiekt.HideElement(LiczbaElem,Key);
+		timer.ZmierzCzas( obiekt,Key, pow( PODSTAWA, idx ) );
+		timer.SkrocZapiszDo(file);	
+	}
 
+	file.close();
+
+	file.open("List.txt");
+
+	for ( int idx = 1; idx <= LICZBA_POMIAROW; ++idx ){ 
+		int LiczbaElem = pow(PODSTAWA, idx);
+		List obiekt;
+		std::cerr << "Iter: " << idx << std::endl;
+
+		obiekt.HideElement(LiczbaElem,Key);
+		timer.ZmierzCzas( obiekt,Key, pow( PODSTAWA, idx ) );
+		timer.SkrocZapiszDo(file);	
+	}
+
+	file.close();
+
+	return 0;
 }
+

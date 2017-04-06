@@ -17,13 +17,17 @@ class List: public IList, public Testowalny
 	public:
 
 	List();
-	virtual ~List();
+	virtual bool HideElement(const unsigned int&, const int&);
 
-	virtual bool Add(Element, Position);
-	virtual bool Remove(Position);
-	virtual Element Get(Position) const;
-	virtual int Size() const;
-	virtual Element Find(Element);
+	// IList methods
+	virtual ~List();
+	virtual bool Add( const int&,const unsigned int&);
+	virtual bool Remove(const unsigned int&);
+	virtual int Get(const unsigned int&) const;
+	virtual unsigned int Size() const;
+	virtual int Find(const int&);
+	
+	// Testowalny methods	
 	virtual void Testuj(const unsigned int&, const unsigned int&, const int&);
 
 };

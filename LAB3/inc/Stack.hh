@@ -10,7 +10,7 @@
 class Stack: public Testowalny, public IStack
 { 
 
-		Element* _Stack;
+		int* _Stack;
 		unsigned int _Size;
 		unsigned int _FillLevel;
 
@@ -19,17 +19,17 @@ class Stack: public Testowalny, public IStack
 	
 	public:
 	
-		bool HideElement( unsigned int, Element);
 		Stack();
-		Stack( unsigned int );
-		virtual ~Stack();
+		Stack(const unsigned int&);
+		bool HideElement(const unsigned int&, const int&);
 		
 		// IStack methods
+		virtual ~Stack();
 		virtual unsigned int Size() const;
-		virtual bool Push(const Element&);
-		virtual Element Pop();
+		virtual bool Push(const int&);
+		virtual int Pop();
 		virtual bool IsEmpty();
-		virtual int Find(const Element&);
+		virtual int Find(const int&);
 	
 		// Testowalny methods
 		virtual void Testuj( const unsigned int&, const unsigned int&, const int&);

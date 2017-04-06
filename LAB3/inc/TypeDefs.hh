@@ -5,11 +5,6 @@
 
 
 
-typedef int Element;
-typedef unsigned int Position;
-typedef int ID;
-
-
 enum Error { WrongSize, NotEnMem, EmptyStack, EmptyQueue };
 
 

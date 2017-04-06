@@ -11,29 +11,20 @@ Stack::Stack() {
 }
 
 
-Stack::Stack(unsigned int StackSize ) {
+Stack::Stack(const unsigned int& StackSize ) {
 
 	if ( StackSize <= 0 ) {
-		std::cerr << "Stack size must be greather than 0\n";
-		exit(WrongSize);
+		std::string Exception = "Stack size must be greather than 0\n";
+		throw Exception;
 	}
 
 
-	Element* stack_tmp = new Element[StackSize];
+	int* stack_tmp = new int[StackSize];
 
-	if ( stack_tmp != nullptr ) {
-
-		_Stack = stack_tmp;
-		_Size = StackSize;
-		_FillLevel = 0;
-		stack_tmp = nullptr;
-
-	} else {
-
-		std::cerr << "Not enough memory\n";
-		exit(NotEnMem);
-	}
-
+	_Stack = stack_tmp;
+	_Size = StackSize;
+	_FillLevel = 0;
+	stack_tmp = nullptr;
 
 }
 
@@ -63,7 +54,7 @@ Stack& Stack::operator=(const Stack& stack) {
 
 
 
-bool Stack::HideElement(Position Posit, Element Key) {
+bool Stack::HideElement(const unsigned int& Posit, const int& Key) {
 
 
 	if ( Posit >= _Size ) return false; 
@@ -100,13 +91,14 @@ bool Stack::IsEmpty() {
 	return  (_FillLevel==EMPTY) ? true : false ;
 }
 
-bool Stack::Push( const Element& Elem ) {
+bool Stack::Push( const int& Elem ) {
 
 	bool state_var = true;
 
 	if ( IsOverflowed() ) {
-		std::cerr << "Stack is overflowed\n";
 		state_var = false;
+		std::string Exception = "Stack is overflowed\n";
+		throw Exception;
 	} else {
 	this->_Stack[_FillLevel++] = Elem;
 	}
@@ -115,33 +107,35 @@ bool Stack::Push( const Element& Elem ) {
 
 }
 
-Element Stack::Pop() {
-	 if ( IsEmpty() ) {
-		std::cerr << "Stack is empty. Can't pop next element\n";
-		exit(EmptyStack);
-	} 
+int Stack::Pop() {
+	 
+	if ( IsEmpty() ) 
+	 {
+		 std::string Exception = "Stack is empty. Can't pop next element\n";
+		 throw Exception;
+	 } 
 
 	return _Stack[--_FillLevel];
 }
 
-int Stack::Find( const Element& Key ) {
+int Stack::Find( const int& Key ) {
 
-	Element ElemArr[_Size];
+	Stack stack_tmp(_Size);
 	
-	Position tmp_pos = -1;
+	int tmp_pos = -1;
 	unsigned int maxPosition = _FillLevel-1;  
 
-	for ( unsigned int i = 0  ; !IsEmpty() ; ++i ) {
-		
-		ElemArr[i] = Pop();
-		if ( Key == ElemArr[i] ){
+	for ( unsigned int i = 0  ; i <_Size ; ++i ) {
+		int elem	= Pop();	
+		stack_tmp.Push(elem);
+		if ( Key == elem ){
 			tmp_pos = maxPosition - i ;
 			break;
 		}
 	}
 
 	for ( int i = maxPosition-tmp_pos; i >= 0 ; --i ) {
-		Push(ElemArr[i]);
+		Push(stack_tmp.Pop());
 	}
 
 	return tmp_pos;
@@ -150,10 +144,8 @@ int Stack::Find( const Element& Key ) {
 
 
 
-void Stack::Testuj( const unsigned int& initCond, const Position& ElemPosition , const Element& Key) {
+void Stack::Testuj( const unsigned int& Key, const unsigned int& ElemPosition , const int& Nil) {
 
-	*this = Stack(initCond);
-	HideElement( ElemPosition, Key);
 	Find(Key);
 
 }

@@ -5,15 +5,25 @@
 #include "IQueue.hh"
 #include "Testowalny.hh"
 #include "Headers.hh"
-#include "List.hh"
 
 class Queue: public IQueue, public Testowalny {
 
 
-	List _Queue;
+	int* _Queue;
+	unsigned int _Size;
+	unsigned int _FillLevel;
+	unsigned int _Beginning;
+	unsigned int _End;
 
+
+	Queue& operator=(const Queue&);
+	virtual bool IsOverflowed();
+
+	
 	public:
 
+	Queue( const unsigned int& );
+	~Queue();
 	bool HideElement( const unsigned int&, const int& );
 
 	// IQueue methods
