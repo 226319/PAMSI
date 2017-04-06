@@ -12,7 +12,7 @@ int main() {
 	Czasomierz timer(LICZBA_REALIZACJI);
 	const unsigned int Key = 44;
 	std::ofstream file;
-/*	
+	
 	file.open("Stack.txt");
 
 
@@ -24,7 +24,7 @@ int main() {
 	}
 
 	file.close();
-*/
+	
 	file.open("Queue.txt");
 
 	for ( int idx = 1; idx <= LICZBA_POMIAROW; ++idx ){ 
@@ -35,7 +35,7 @@ int main() {
 	}
 
 	file.close();
-/*
+	
 	file.open("List.txt");
 
 	for ( int idx = 1; idx <= LICZBA_POMIAROW; ++idx ){ 
@@ -46,6 +46,5 @@ int main() {
 	}
 
 	file.close();
-*/
 	return 0;
 }
