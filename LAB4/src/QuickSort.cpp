@@ -5,17 +5,17 @@
 int PodzielTablice( Tablica& array, const unsigned int& PoczatekPodzialu, const unsigned int& KoniecPodzialu) {
 
 
-	int indeksPodzialu = PoczatekPodzialu;  //(KoniecPodzialu-PoczatekPodzialu-1)/2;
+	int indeksPodzialu = PoczatekPodzialu;
 	int wartoscPodzialu = array.OdczytajElement(indeksPodzialu);
-	int i = PoczatekPodzialu - 1;
-	int k = KoniecPodzialu + 1;
+	int i = PoczatekPodzialu;
+	int k = KoniecPodzialu-1;
 	int tmp = 0;
 
 
    while ( true ) {
 
-	 do {--k;} while( array.OdczytajElement(k) > wartoscPodzialu );
-	 do {++i;} while( array.OdczytajElement(i) < wartoscPodzialu ); 
+	 while( array.OdczytajElement(k) > wartoscPodzialu ) {--k;}
+	 while( array.OdczytajElement(i) < wartoscPodzialu ) {++i;} 
 		 
 		 if ( i < k ) {
 			tmp = array.OdczytajElement(i);

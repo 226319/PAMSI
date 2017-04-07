@@ -8,7 +8,6 @@
 #define LICZBA_REALIZACJI 20
 #define PODSTAWA 10
 #define PRECYZJA 7
-#define NDEBUG
 
 #include <iostream>
 #include <fstream>

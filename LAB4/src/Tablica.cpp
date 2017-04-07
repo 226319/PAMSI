@@ -41,28 +41,22 @@ Tablica& Tablica::operator=(const Tablica& tab) {
 	return *this;
 }
 
+
 bool Tablica::Powieksz( unsigned int liczba ) {
 
-	int NowyRozmiar_tmp = _Rozmiar + liczba;
-	int* tmp_tab = new(std::nothrow) int[NowyRozmiar_tmp];
-
-	if ( tmp_tab == nullptr ) {
+	unsigned int NowyRozmiar_tmp = _Rozmiar + liczba;
 	
-		std::string Wyjatek = " Nie mozna zaalokowac pamieci";
-		throw Wyjatek;
-		return false;
-	
-	} else {
+	int* tmp_tab = new int[NowyRozmiar_tmp];
 
-		for ( unsigned int i = 0; i < _Rozmiar; ++i ) {
-			tmp_tab[i] = _Tablica[i];
-		}
+
+	for ( unsigned int i = 0; i < _Rozmiar; ++i ) {
+		tmp_tab[i] = _Tablica[i];
+	}
 	
 	delete [] _Tablica;
 	_Rozmiar = NowyRozmiar_tmp;
 	_Tablica = tmp_tab;
 	
-	}
 
 	return true;
 	
@@ -87,7 +81,9 @@ int Tablica::OdczytajElement( const unsigned int& idx ) const {
 	/* Metoda Get. Pozwala na odczytanie elementu o numerze idx
 	 */
 	assert (idx < _Rozmiar);
-	return _Tablica[idx];
+	int tmp = _Tablica[idx];
+
+	return tmp;
 }
 
 int& Tablica::ZmienElement( const unsigned int& idx ) {
