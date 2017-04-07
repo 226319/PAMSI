@@ -1,1 +1,2 @@
-Od laboratorium nr 3, zadania i sprawozdania umieszczane są w osobnych branchach
+# Info
+### Od laboratorium nr 3, zadania i sprawozdania umieszczane są w osobnych branchach
