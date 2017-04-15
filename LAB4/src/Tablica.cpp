@@ -80,7 +80,7 @@ const unsigned int& Tablica::Size() const {
 int Tablica::OdczytajElement( const unsigned int& idx ) const { 
 	/* Metoda Get. Pozwala na odczytanie elementu o numerze idx
 	 */
-	assert (idx < _Rozmiar);
+	assert ( (idx < _Rozmiar) && (idx >= 0) );
 	int tmp = _Tablica[idx];
 
 	return tmp;
