@@ -5,32 +5,27 @@
 #include "IQueue.hh"
 #include "Testowalny.hh"
 #include "Headers.hh"
+#include "List.hh"
 
 class Queue: public IQueue, public Testowalny {
 
 
-	Element* _Queue;
-	unsigned int _Size;
-	unsigned int _Beginning;
-	unsigned int _End;
+	List _Queue;
 
-
-	Queue& operator=(const Queue&);
-
-	
+	bool HideElement( const unsigned int&, const int& );
 	public:
 
-	bool HideElement( const Position&, const Element& );
-		Queue( unsigned int );
-		~Queue();
-		virtual unsigned int Size() const;
-		virtual bool Enqueue( Element );
-		virtual Element Dequeue();
-		virtual bool IsOverflowed();
-		virtual bool IsEmpty();
-		virtual void Testuj(const unsigned int&, const unsigned int&, const int&);
-		virtual int Find(const Element&);
 
+	// IQueue methods
+	virtual unsigned int Size() const;
+	virtual bool Enqueue(const int&);
+	virtual int Dequeue();
+	virtual bool IsEmpty();
+	virtual int Find(const int&);
+	
+	// Testowalny methods	
+	virtual void Testuj(const unsigned int&, const unsigned int&, const int&);
+	virtual bool PrzygotujDoTestu(const unsigned int&, const unsigned int&);
 };
 
 

@@ -6,34 +6,35 @@
 #include "IStack.hh"
 
 #define EMPTY 0
+#define BOTTOM 0
 
 class Stack: public Testowalny, public IStack
 { 
 
-		Element* _Stack;
+		int* _Stack;
 		unsigned int _Size;
 		unsigned int _FillLevel;
 
 		bool IsOverflowed();
 		Stack& operator=( const Stack&);
+		bool HideElement(const unsigned int&, const int&);
 	
 	public:
 	
-		bool HideElement( unsigned int, Element);
 		Stack();
-		Stack( unsigned int );
-		virtual ~Stack();
+		Stack(const unsigned int&);
 		
 		// IStack methods
+		virtual ~Stack();
 		virtual unsigned int Size() const;
-		virtual bool Push(const Element&);
-		virtual Element Pop();
+		virtual bool Push(const int&);
+		virtual int Pop();
 		virtual bool IsEmpty();
-		virtual int Find(const Element&);
+		virtual int Find(const int&);
 	
 		// Testowalny methods
 		virtual void Testuj( const unsigned int&, const unsigned int&, const int&);
-
+		virtual bool PrzygotujDoTestu(const unsigned int&, const unsigned int&);
 };
 
 

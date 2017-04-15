@@ -1,25 +1,25 @@
 #ifndef NODE_HH
 #define NODE_HH
 
-#include "TypeDefs.hh"
 #include "Headers.hh"
 
 
 class Node {
 
 
-	Element _Elem;
+	int _Elem;
 	Node* _PtrToNextNode;
-
 
 	public:
 
-	Node( Element, Node& );
+	Node();
+	Node(int,Node& );
 	~Node();
-	Node& SetNext();
-	const Node& Next() const;
-	const Element& GetElement() const;
-	Element& SetElement();
+	
+	void  SetNext(Node*);
+	Node* Next() const;
+	const int& GetElement() const;
+	int&  SetElement();
 
 
 };

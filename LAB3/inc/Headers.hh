@@ -4,7 +4,8 @@
 
 #include <iostream>
 #include <cassert>
-
+#include <fstream>
+#include <math.h>
 
 
 #endif
