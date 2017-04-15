@@ -1,2 +1,4 @@
 # Info
-### Od laboratorium nr 3, zadania i sprawozdania umieszczane są w osobnych branchach
+### W związku z porządkami świątecznymi uporządkowano repozytorium
+#### - w branchu master znajdują się ostateczne wersje programów
+#### - w branchach odpowiadających laboratoriom znajdują się wersje rozwojowe
