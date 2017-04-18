@@ -15,6 +15,7 @@ class Tablica: public Testowalny
 		unsigned int& Rozmiar();
 
 	public:
+		
 		const unsigned int& Size() const;
 		Tablica();
 		Tablica(unsigned int);
@@ -24,6 +25,7 @@ class Tablica: public Testowalny
 		const unsigned int& Rozmiar() const;
 		virtual Tablica& operator=(const Tablica&);
 		virtual bool DodajElement(const unsigned int& , const int& );
+		virtual void PrzygotujDoTestu(const unsigned int&, const int&);
 		virtual void Testuj(const unsigned int&, const unsigned int&, const int&);
 
 };

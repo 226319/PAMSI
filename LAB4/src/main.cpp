@@ -3,37 +3,44 @@
 #include "Tablica2.hh"
 #include "Czasomierz.hh"
 #include "Opcje.hh"
+#include "QSTest.hh"
+#include "Funkcje.hh"
 #include "QuickSort.hh"
 
-#define ROZMIAR 10
+
+#define TRYB 3
+#define ROZM_MAKS 9
 
 int main() {
 
-	Tablica obiekt(ROZMIAR);
+	
+	Czasomierz timer(LICZBA_REALIZACJI);
 
-	std::cerr << obiekt.Size() <<  std::endl;
-	srand(time(NULL));
+	std::fstream plik;
+	std::string TrybD = "plo123";
+
+
+ for ( int Sort = 1; Sort <= TRYB ; ++Sort) {
+
+	 for ( int Tryb = 1; Tryb <= TRYB; ++Tryb ) {
+		 std::string nazwa = "Sort/Sort";
+		 nazwa += TrybD[Sort+2];
+		 nazwa += TrybD[Tryb-1];
+		 
+		 plik.open(nazwa, std::ofstream::out );
 	
-	for ( unsigned int i = 0; i < obiekt.Size(); ++i) 
-		obiekt.ZmienElement(i) = 5;//rand() % 100;
+			for ( int idx = 1; idx <= ROZM_MAKS; ++idx ){
+			QSTest obiekt(pow( PODSTAWA, idx ));
+			
+			PrzygotujDane(pow( PODSTAWA, idx ),2);
+		
+			timer.ZmierzCzas( obiekt,Sort, pow( PODSTAWA, idx ) );
+			timer.SkrocZapiszDo(plik);	
+		}
 	
-	for ( unsigned int i = 0; i < obiekt.Size(); ++i) {
-		std::cerr << obiekt.OdczytajElement(i) << ' ';
+		plik.close();
 	}
-
-	std::cerr << std::endl;
-	std::cerr << obiekt.Size() <<  std::endl;
-
-	QuickSort(obiekt,0,obiekt.Size()-1);
-
-	for ( unsigned int i = 0; i < obiekt.Size(); ++i) {
-		std::cerr << obiekt.OdczytajElement(i) << ' ';
-	}
-	
-	std::cerr << std::endl;
-
-	std::cerr << obiekt.Size() <<  std::endl;
-
+ }	
 
 	return 0;
 }

@@ -124,15 +124,17 @@ bool Tablica::DodajElement(const unsigned int& Index, const int& Wart) {
 }
 
 void Tablica::Testuj(const unsigned int& WarPocz, const unsigned int& LiczbaElem, const int& Wartosc) {
-	/* Testuje algorytm powiekszania tablicy
-	 */
 
-	*this = Tablica(WarPocz);
-	for ( unsigned int idx = 0; idx < LiczbaElem; ++idx){
-		this->DodajElement(idx,Wartosc);
-	}
 
 }
+
+void Tablica::PrzygotujDoTestu(const unsigned int& WarPocz, const int& Wartosc) {
+
+
+}
+
+
+
 /*------------------------------| Koniec |--------------------------*/
 
 
