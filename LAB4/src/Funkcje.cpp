@@ -23,7 +23,7 @@ void PrzygotujDane(const unsigned int& LiczbaElem, const unsigned int& Tryb ) {
 		
 		case 3:
 			for ( unsigned int idx = LiczbaElem; idx > 0; --idx ) {
-				plik << idx << ' ';
+				plik << 4 << ' ';
 			}
 			break;
 	

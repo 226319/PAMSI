@@ -9,7 +9,7 @@
 
 
 #define TRYB 3
-#define ROZM_MAKS 9
+#define ROZM_MAKS 8
 
 int main() {
 
@@ -20,9 +20,13 @@ int main() {
 	std::string TrybD = "plo123";
 
 
- for ( int Sort = 1; Sort <= TRYB ; ++Sort) {
 
-	 for ( int Tryb = 1; Tryb <= TRYB; ++Tryb ) {
+ for ( int Sort = 1; Sort <= TRYB ; ++Sort) {    
+	 // Zmiana rodzaju pivota 1 - Pierwszy z lewej, 2- Losowy, 3- Mediana z trzech
+
+	 for ( int Tryb = 1; Tryb <= TRYB; ++Tryb ) {  
+		 // Zmiana rodzaju sanych 1 - rosnąco, 2- losowo, 3 - malejaco
+		
 		 std::string nazwa = "Sort/Sort";
 		 nazwa += TrybD[Sort+2];
 		 nazwa += TrybD[Tryb-1];
@@ -32,7 +36,7 @@ int main() {
 			for ( int idx = 1; idx <= ROZM_MAKS; ++idx ){
 			QSTest obiekt(pow( PODSTAWA, idx ));
 			
-			PrzygotujDane(pow( PODSTAWA, idx ),2);
+			PrzygotujDane(pow( PODSTAWA, idx ),Tryb);
 		
 			timer.ZmierzCzas( obiekt,Sort, pow( PODSTAWA, idx ) );
 			timer.SkrocZapiszDo(plik);	
@@ -41,7 +45,6 @@ int main() {
 		plik.close();
 	}
  }	
-
 	return 0;
 }
 

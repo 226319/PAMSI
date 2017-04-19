@@ -60,7 +60,7 @@ int PodzielTabliceMedianaZTrzech( Tablica& array, const unsigned int& PoczatekPo
 	int k = KoniecPodzialu + 1 ;
 
 	// Losowanie pivota
-	indeksPodzialu =  Losuj2(PoczatekPodzialu, KoniecPodzialu);
+	indeksPodzialu =  Losuj2(array,PoczatekPodzialu, KoniecPodzialu);
 
 	ZamienElementy(array, PoczatekPodzialu, indeksPodzialu);
 	wartoscPodzialu = array.OdczytajElement(PoczatekPodzialu);
@@ -160,14 +160,21 @@ const unsigned int& Porownaj( const unsigned int& liczba1, const unsigned int& l
 	return (liczba1>liczba2) ? liczba1 : liczba2 ;
 }
 
-const unsigned int& Losuj2(const unsigned int& PoczatekPodzialu,const unsigned int& KoniecPodzialu) {
-	srand(time(NULL));
+const unsigned int Losuj2(const Tablica& array, const unsigned int& PoczatekPodzialu,const unsigned int& KoniecPodzialu) {
 
-	int tmp1 = (rand() % (KoniecPodzialu - PoczatekPodzialu + 1)) + PoczatekPodzialu;
-	int tmp2 = (rand() % (KoniecPodzialu - PoczatekPodzialu + 1)) + PoczatekPodzialu;
-	int tmp3 = (rand() % (KoniecPodzialu - PoczatekPodzialu + 1)) + PoczatekPodzialu;
+	const int NumbOfRand = 3;
 
-	return Porownaj( Porownaj(tmp1,tmp2), tmp3);
+	int tmp[NumbOfRand] = {(int)PoczatekPodzialu, (int)(KoniecPodzialu-PoczatekPodzialu)/2, (int)KoniecPodzialu};
+	
+	for ( int x = 0;  x < NumbOfRand-1 ; ++x ) {
+		if( array.OdczytajElement(tmp[x]) >= array.OdczytajElement(tmp[x+1]) ){
+				int temp = tmp[x+1];
+				tmp[x+1] = tmp[x];
+				tmp[x] = temp;
+			}
+	}
+
+	return tmp[(NumbOfRand-1)/2];
 }
 
 

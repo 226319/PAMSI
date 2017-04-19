@@ -37,4 +37,4 @@ obj/Testowalny.o: src/Testowalny.cpp inc/Testowalny.hh
 	g++ ${CPPFLAGS} -o obj/Testowalny.o src/Testowalny.cpp
 
 clean:
-	rm -f obj/*.o lab4
+	rm -f obj/*.o lab4 Sort/Sort*

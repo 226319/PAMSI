@@ -15,6 +15,6 @@ void ZamienElementy(Tablica&, const unsigned int&, const unsigned int&);
 int Losuj(const unsigned int&, const unsigned int&); 
 int PodzielTabliceMedianaZTrzech(Tablica&, const unsigned int& , const unsigned int&);
 void QuickSortMedianaZTrzech( Tablica&,const unsigned int&,const unsigned int&);
-const unsigned int& Losuj2(const unsigned int&,const unsigned int&);
+const unsigned int Losuj2(const Tablica&, const unsigned int&,const unsigned int&);
 
 #endif
