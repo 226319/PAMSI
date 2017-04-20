@@ -15,7 +15,7 @@ QSTest::~QSTest(){}
 
 void QSTest::WczytajTablice() {
 
-	std::ifstream plik("tmp/TestTab.tmp", std::ios::binary);
+	std::ifstream plik("tmp/TestTab.tmp");
 
 	if ( plik.fail() ) {
 		std::string wyjatek = "\nNie znaleziono: tmp/TestTab.tmp";
@@ -24,7 +24,7 @@ void QSTest::WczytajTablice() {
 
 	for ( unsigned int idx = 0; idx < _tab.Size(); ++idx ) {
 		plik >> _tab.ZmienElement(idx);
-		if ( plik.fail() ) {
+		if ( plik.bad() ) {
 			std::string wyjatek = "\nBlad odczytu: tmp/TestTab.tmp";
 			throw wyjatek;
 		}

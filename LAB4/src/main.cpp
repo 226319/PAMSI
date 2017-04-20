@@ -32,14 +32,17 @@ int main() {
 		 nazwa += TrybD[Tryb-1];
 		 
 		 plik.open(nazwa, std::ofstream::out );
+
+		 std::cerr << std::endl << nazwa << std::endl;
 	
 			for ( int idx = 1; idx <= ROZM_MAKS; ++idx ){
-			QSTest obiekt(pow( PODSTAWA, idx ));
+				QSTest obiekt(pow( PODSTAWA, idx ));
 			
-			PrzygotujDane(pow( PODSTAWA, idx ),Tryb);
+				std::cerr << std::endl << idx << std::endl;
+				PrzygotujDane(pow( PODSTAWA, idx ),Tryb);
 		
-			timer.ZmierzCzas( obiekt,Sort, pow( PODSTAWA, idx ) );
-			timer.SkrocZapiszDo(plik);	
+				timer.ZmierzCzas( obiekt,Sort, pow( PODSTAWA, idx ) );
+				timer.SkrocZapiszDo(plik);	
 		}
 	
 		plik.close();
