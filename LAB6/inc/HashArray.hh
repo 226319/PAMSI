@@ -10,8 +10,8 @@ class HashArray {
 
 	public:
 
-	virtual Definition& operator[] ( const WatchWord& );
-	virtual const Definition& operator[] ( const WatchWord&) const;
+	virtual Definition& operator[] ( const WatchWord& ) = 0;
+	virtual const Definition& operator[] ( const WatchWord&) const = 0;
 
 
 }

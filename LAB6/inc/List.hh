@@ -8,11 +8,11 @@ class List {
 
 	public:
 
-		virtual void Append(const Element&);
-		virtual void Remove(const WatchWord&);
+		virtual void Append(const Element&) = 0;
+		virtual void Remove(const WatchWord&) = 0;
 
-		virtual const Element& getElement(const WatchWord&) const;
-		virtual Element& setElement(const WatchWord&);
+		virtual const Element& getElement(const WatchWord&) const = 0;
+		virtual Element& setElement(const WatchWord&) = 0;
 
 
 }

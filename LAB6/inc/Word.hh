@@ -2,8 +2,7 @@
 #define _WORD_HH
 
 #include "Element.hh"
-#include <iostream>
-
+#include <string>
 
 
 class Word : public Element {
@@ -14,9 +13,12 @@ class Word : public Element {
 	public: 
 
 	Word();
+	Word(const WatchWord&, const Definition&);
+	Word(const Word&);
+
 	~Word();
 
-	const Definition getDefinition() const;
+	const Definition& getDefinition() const;
 	Definition& setDefinition();
 
 	const WatchWord& getWatchWord() const;

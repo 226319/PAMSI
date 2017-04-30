@@ -1,24 +1,29 @@
-# TODO: Move `libmongoclient.a` to /usr/local/lib so this can work on production servers
-#
  
 CC := g++ # This is the main compiler
-# CC := clang --analyze # and comment out the linker last line for sanity
+
 SRCDIR := src
 OBJECTDIR := obj
 HEADERDIR := inc
+TESTDIR := obj/test
 TARGET := lab6
  
 SRCEXT := cpp
+HEADEREXT := hh
 SOURCES := $(shell find $(SRCDIR) -type f -name *.$(SRCEXT))
 OBJECTS := $(patsubst $(SRCDIR)/%,$(OBJECTDIR)/%,$(SOURCES:.$(SRCEXT)=.o))
-HEADERS := $(patsubst $(SRCDIR)/%,$(HEADERDIR)/%,$(SOURCES:.$(SRCEXT)=.hh))
+OBJECTS2 := $(patsubst $(OBJECTDIR)/main.o, , $(OBJECTS) )
+
+
 CFLAGS := -g  -Wall -pedantic -std=c++11
-LIB := -l lboost_unit_test_framework-mt 
+LIB := -lboost_unit_test_framework 
 INC := -I $(HEADERDIR)
 
-$(TARGET): $(OBJECTS)
+_start_: tester
+	./tester --log_level=test_suite
+
+$(TARGET): $(OBJECTS) 
 	@echo " Linking...";
-	@echo " $(CC) $^ -o $(TARGET) $(LIB)"; $(CC) $^ -o $(TARGET) $(LIB)
+	@echo " $(CC) $^  $(TARGET) $(LIB)"; $(CC) $^ -o $(TARGET) $(LIB)
 
 $(OBJECTDIR)/%.o: $(SRCDIR)/%.$(SRCEXT)
 	@mkdir -p $(OBJECTDIR)
@@ -26,10 +31,10 @@ $(OBJECTDIR)/%.o: $(SRCDIR)/%.$(SRCEXT)
 
 clean:
 	@echo " Cleaning..."; 
-	@echo " $(RM) -r $(OBJECTDIR) $(TARGET)"; $(RM) -r $(OBJECTDIR) $(TARGET)
+	@echo " $(RM) -r $(OBJECTDIR) $(TARGET) tester"; $(RM) -r $(OBJECTDIR) $(TARGET) tester
 
 # Tests
-tester:
-	$(CC) $(CFLAGS) test/tester.cpp $(INC) $(LIB) -o tester
+tester: $(OBJECTS2)
+	$(CC) $(CFLAGS) $(OBJECTS2) test/tester.cpp $(INC) $(LIB) -o tester
 
 .PHONY: clean

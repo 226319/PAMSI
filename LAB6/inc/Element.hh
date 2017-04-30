@@ -1,6 +1,8 @@
 #ifndef _ELEMENT_HH
 #define _ELEMENT_HH
 
+#include <string>
+
 typedef std::string Definition;
 typedef std::string WatchWord;
 
@@ -8,13 +10,13 @@ class Element {
 
 	public:
 
-		virtual ~Element();
+		virtual ~Element() {};
 		
-		virtual const Definition getDefinition() const;
-		virtual Definition& setDefinition();
+		virtual const Definition& getDefinition() const =0;
+		virtual Definition& setDefinition() = 0;
 
-		virtual const WatchWord& getWatchWord() const;
-		virtual WatchWord& setWatchWord();
+		virtual const WatchWord& getWatchWord() const = 0;
+		virtual WatchWord& setWatchWord() = 0;
 
 
 

@@ -1,28 +1,31 @@
-#ifndef _WYRAZ_HH
-#define _WYRAZ_HH
+#ifndef _DICT_ELEM_HH
+#define _DICT_ELEM_HH
+
+#include "Node.hh"
+#include "Word.hh"
 
 
-class DictionaryElement: public Element {
+class DictionaryElement: public Node {
 
-	Key	Word; 
-	Definition WordDefinition;
+	DictionaryElement* NextElement;
+	Word Term; 
 
 
 	public:
 
-	~DictionaryElement();
+	DictionaryElement();
+	//DictionaryElement(const DictionaryElement& );
 	
-	const Definition& getDefinition() const;
-	Definition& setDefinition();
-	
-	const Key& getKey() const;
-	Key& setKey(); 
+	virtual ~DictionaryElement();
 	
 
-}
+	const DictionaryElement* const getNext() const;
+	void setNext( DictionaryElement* );
 
+	const Word& getWord() const;
+	Word& setWord();
 
-
+};
 
 
 

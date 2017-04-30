@@ -7,16 +7,17 @@
 class Node {
 
 	public:
+	
+	virtual ~Node() {};
 
-	const Node& getNext() const;
-	Node& setNext();
+	virtual const Node* const getNext() const = 0;
+	virtual void setNext(Node*) = 0;
 
-	const Element& getElement() const;
-	Element& setElement();
+	virtual const Element& getWord() const = 0;
+	virtual Element& setWord() = 0;
 
 
-
-}
+};
 
 
 
