@@ -3,27 +3,32 @@
 
 #include "Node.hh"
 #include "Word.hh"
-
+#include <iostream>
 
 class DictionaryElement: public Node {
 
 	DictionaryElement* NextElement;
+	DictionaryElement* PreviousElement;
 	Word Term; 
 
 
 	public:
 
 	DictionaryElement();
-	//DictionaryElement(const DictionaryElement& );
+	DictionaryElement(DictionaryElement& );
+	DictionaryElement& operator= (const DictionaryElement&);
 	
 	virtual ~DictionaryElement();
 	
 
-	const DictionaryElement* const getNext() const;
-	void setNext( DictionaryElement* );
+	DictionaryElement* const getNext() const;
+	void setNext(DictionaryElement*);
 
 	const Word& getWord() const;
 	Word& setWord();
+
+	DictionaryElement* const getPrevious() const;
+	void setPrevious(DictionaryElement*);
 
 };
 

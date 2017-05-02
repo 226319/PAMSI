@@ -1,85 +1,40 @@
-#define BOOST_TEST_DYN_LINK
-#define BOOST_TEST_MODULE Dictionary
-#include <boost/test/unit_test.hpp>
-#include "Word.hh"
-#include "DictionaryElement.hh"
+#include <boost/test/included/unit_test.hpp>
+#include "DictionaryElement_Test.hh"
+#include "Word_Test.hh"
 
-BOOST_AUTO_TEST_SUITE( Word_Test ) 
-
-	BOOST_AUTO_TEST_CASE( Constructor_Test ) {
-		Word NewWord;
-		BOOST_CHECK_EQUAL( NewWord.getWatchWord(), "WatchWord" );
-	}
-
-	BOOST_AUTO_TEST_CASE( getWatchWord_Test ) {
-		Word NewWord("NewWord", "NewDefinition");
-		BOOST_CHECK_EQUAL( NewWord.getWatchWord(), "NewWord" );
-	}
-
-	BOOST_AUTO_TEST_CASE( getDefinition_Test ) {
-		Word NewWord("NewWord", "NewDefinition");
-		BOOST_CHECK_EQUAL( NewWord.getDefinition(), "NewDefinition" );
-	}
-
-	BOOST_AUTO_TEST_CASE( setWatchWord_Test ) {
-		Word NewWord;
-		
-		NewWord.setWatchWord() = "NewWord";
-		BOOST_CHECK_EQUAL( NewWord.getWatchWord(), "NewWord" );
-	}
-
-	BOOST_AUTO_TEST_CASE( setDefinition_Test ) {
-		Word NewWord;
-
-		NewWord.setDefinition() = "NewDefinition";
-		BOOST_CHECK_EQUAL( NewWord.getDefinition(), "NewDefinition" );
-	}
-
-BOOST_AUTO_TEST_SUITE_END()
-
-BOOST_AUTO_TEST_SUITE( DictionaryElement_Test )
-
-	BOOST_AUTO_TEST_CASE( getNext_Test ) {
-		
-		DictionaryElement NewDictElement;
-
-		BOOST_CHECK( NewDictElement.getNext() == nullptr );
-	
-	}
-	
-	BOOST_AUTO_TEST_CASE( setNext_Test ) {
-		
-		DictionaryElement NewDictElement, AnotherOne;
-
-		NewDictElement.setNext(&AnotherOne);
-
-		BOOST_CHECK( NewDictElement.getNext() == &AnotherOne );
-	
-	}
-
-	BOOST_AUTO_TEST_CASE( getWord_Test ) {
-
-		DictionaryElement NewDictElement;
-	
-		Word TmpWord = NewDictElement.getWord();
-
-		BOOST_CHECK_EQUAL( TmpWord.getWatchWord(), "WatchWord" );
-		BOOST_CHECK_EQUAL( TmpWord.getDefinition(), "Definition" );
-	}
-	
-	BOOST_AUTO_TEST_CASE( setWord_Test ) {
-
-		DictionaryElement NewDictElement;
-	
-		Word TmpWord1("Maslo", "Wyrob z mleka");
-		NewDictElement.setWord() = TmpWord1;
-		Word TmpWord = NewDictElement.getWord();
+using namespace boost::unit_test;
 
 
-		BOOST_CHECK_EQUAL( TmpWord.getWatchWord(), "WatchWord" );
-		BOOST_CHECK_EQUAL( TmpWord.getDefinition(), "Definition" );
-	}
 
-BOOST_AUTO_TEST_SUITE_END()
+test_suite* init_unit_test_suite( int argc, char* argv[] ) {
+
+	test_suite* FirstSuite = BOOST_TEST_SUITE( "Word_TestSuite" );
+	FirstSuite->add( BOOST_TEST_CASE( &Constructor_Test ) ); 
+	FirstSuite->add( BOOST_TEST_CASE( &getWatchWord_Test ) ); 
+	FirstSuite->add( BOOST_TEST_CASE( &getDefinition_Test ) ); 
+	FirstSuite->add( BOOST_TEST_CASE( &setWatchWord_Test ) ); 
+	FirstSuite->add( BOOST_TEST_CASE( &setDefinition_Test ) ); 
+
+	test_suite* SecondSuite = BOOST_TEST_SUITE( "DictionaryElement_TestSuite" );
+	SecondSuite->add( BOOST_TEST_CASE( &getNext_Test) );
+	SecondSuite->add( BOOST_TEST_CASE( &setNext_Test) );
+	SecondSuite->add( BOOST_TEST_CASE( &getPrevious_Test) );
+	SecondSuite->add( BOOST_TEST_CASE( &setPrevious_Test) );
+	SecondSuite->add( BOOST_TEST_CASE( &getWord_Test) );
+	SecondSuite->add( BOOST_TEST_CASE( &setWord_Test) );
+	SecondSuite->add( BOOST_TEST_CASE( &CopyConstructorAndCAssignment_Test) );
+
+	framework::master_test_suite().add( FirstSuite );
+	framework::master_test_suite().add( SecondSuite );
+
+	return 0;
+
+}
+
+
+
+
+
+
 
 

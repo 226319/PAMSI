@@ -10,12 +10,14 @@ class Node {
 	
 	virtual ~Node() {};
 
-	virtual const Node* const getNext() const = 0;
-	virtual void setNext(Node*) = 0;
+	virtual Node* const getNext() const = 0;
+	virtual void setNext(Node*) {};
 
 	virtual const Element& getWord() const = 0;
 	virtual Element& setWord() = 0;
 
+	virtual Node* const getPrevious() const = 0;
+	virtual void setPrevious(Node*) {};
 
 };
 

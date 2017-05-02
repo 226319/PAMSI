@@ -5,15 +5,38 @@
 DictionaryElement::DictionaryElement() {
 
 	NextElement = nullptr;
+	PreviousElement = nullptr;
 
 }
 
 DictionaryElement::~DictionaryElement() {
 
-	if ( NextElement != nullptr ){
+	if ( NextElement != nullptr ) {
 		NextElement = nullptr;
-	}
 		delete NextElement;
+	}
+	if ( PreviousElement != nullptr ) {
+		PreviousElement = nullptr;
+		delete PreviousElement;
+	}
+
+}
+
+DictionaryElement::DictionaryElement(DictionaryElement& ElementToCopy ) {
+	Term = ElementToCopy.getWord();
+	NextElement = ElementToCopy.getNext();
+	PreviousElement = ElementToCopy.getPrevious();
+}
+
+DictionaryElement& DictionaryElement::operator= (const DictionaryElement& ElementToCopy) {
+
+	if ( &ElementToCopy != this ) {
+		Term = ElementToCopy.getWord();
+		NextElement = ElementToCopy.getNext();
+		PreviousElement = ElementToCopy.getPrevious();
+	}
+	
+	return *this;
 }
 
 
@@ -22,12 +45,12 @@ DictionaryElement::~DictionaryElement() {
 
 //------------------------| Public Methods |-----------------------------
 
-const DictionaryElement* const DictionaryElement::getNext() const {
+DictionaryElement* const DictionaryElement::getNext() const {
 	return NextElement;
 }
 
-void DictionaryElement::setNext(DictionaryElement* next ) {
-	NextElement = next;
+void DictionaryElement::setNext(DictionaryElement* anotherElement ) {
+	NextElement =  anotherElement;
 }
 
 const Word& DictionaryElement::getWord() const {
@@ -37,6 +60,15 @@ const Word& DictionaryElement::getWord() const {
 Word& DictionaryElement::setWord() {
 	return Term;
 }
+
+DictionaryElement* const DictionaryElement::getPrevious() const {
+	return PreviousElement;
+}
+
+void DictionaryElement::setPrevious(DictionaryElement* anotherElement ) {
+	PreviousElement = anotherElement;
+}
+
 
 //------------------------| Public Methods |---------------------------
 

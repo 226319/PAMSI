@@ -7,6 +7,8 @@
 class List {
 
 	public:
+	
+		virtual ~List() {};
 
 		virtual void Append(const Element&) = 0;
 		virtual void Remove(const WatchWord&) = 0;
