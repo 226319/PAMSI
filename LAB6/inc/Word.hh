@@ -24,6 +24,7 @@ class Word : public Element {
 	const WatchWord& getWatchWord() const;
 	WatchWord& setWatchWord();
 
+	bool operator==(const Word&) const;
 };
 
 

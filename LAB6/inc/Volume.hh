@@ -3,16 +3,42 @@
 
 #include "DictionaryElement.hh"
 #include "List.hh"
+#include <iostream>
 
-typedef unsigned int WordCounter;
+typedef unsigned int NumberOfWords;
+typedef unsigned int ElementNumber;
+typedef std::string  Exception;
 
 class Volume: public List {
 
 	DictionaryElement* FirstWord;
 	DictionaryElement* LastWord;
-	WordCounter NumberOfWords;
+	NumberOfWords WordCounter;
+
+	bool isOneElement() const;
+	bool isMoreThanOneElement() const;
+	bool isEmpty() const;
+	bool isNotEmpty() const;
+	bool isFirstWordToAppend() const;
+	bool isSizeIsGreaterThan( const ElementNumber& ) const;
+
+	void RemoveAllElements();
+	void RemoveElement(DictionaryElement*&);
+
+
+	void AppendFirstWord( const Word& WordToAppend );
+	void AppendWord( const Word& WordToAppend );
 	
-	
+	void getElementToRemove(DictionaryElement*&, DictionaryElement*&);
+	DictionaryElement* const getElement( const ElementNumber& ) const;
+
+	void PrepareNextElementForRemove(DictionaryElement*&);
+	void setToNull(DictionaryElement*);
+
+	void RangeException() const;
+	inline ElementNumber IndexOfLastElement() const { return (WordCounter-1); }
+
+
 	public:
 
 	Volume();
@@ -22,10 +48,15 @@ class Volume: public List {
 	virtual ~Volume();
 	
 	void Append( const Word& );
-	void Remove( const WatchWord& );
 
-	const DictionaryElement& getElement( const WatchWord& ) const;
-	DictionaryElement& setElement( const WatchWord&);
+	const Word& getWord( const ElementNumber& ) const;
+	/*
+	void Remove( const WatchWord& );
+	Word& setWord( const ElementNumber&);
+
+*/
+	const NumberOfWords& Size() const;
+
 
 
 

@@ -11,15 +11,9 @@ DictionaryElement::DictionaryElement() {
 
 DictionaryElement::~DictionaryElement() {
 
-	if ( NextElement != nullptr ) {
 		NextElement = nullptr;
-		delete NextElement;
-	}
-	if ( PreviousElement != nullptr ) {
 		PreviousElement = nullptr;
-		delete PreviousElement;
-	}
-
+	
 }
 
 DictionaryElement::DictionaryElement(DictionaryElement& ElementToCopy ) {

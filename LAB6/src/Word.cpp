@@ -47,6 +47,16 @@ WatchWord& Word::setWatchWord() {
 	return Name;
 }
 
+bool Word::operator==( const Word& WordToCheck ) const {
+
+if ( ( Name == WordToCheck.getWatchWord() ) && ( Meaning == WordToCheck.getDefinition() ) ) 
+	return true;
+else return false;
+
+
+}
+
+
 //--------------------------| End |------------------------------
 
 
