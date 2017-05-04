@@ -78,6 +78,13 @@ bool Volume::isSizeIsGreaterThan( const ElementNumber& IndexOfNumber ) const {
 	else return false;
 }
 
+bool Volume::isSearchedElement(DictionaryElement*& Element, const WatchWord& Word ) const {
+
+	return ( Element->getWord().getWatchWord() == Word );
+
+}
+
+
 void Volume::RemoveAllElements() {
 
 	DictionaryElement* ElementHolder = FirstWord;
@@ -86,7 +93,7 @@ void Volume::RemoveAllElements() {
 		DictionaryElement* ElementToRemove;
 		
 		getElementToRemove(ElementToRemove, ElementHolder);
-		PrepareNextElementForRemove( ElementHolder );
+		GoToTheNext( ElementHolder );
 		
 		RemoveElement(ElementToRemove);
 
@@ -105,7 +112,7 @@ void Volume::getElementToRemove(DictionaryElement*& ElementToRemove, DictionaryE
 	ElementToRemove = ElementHolder;
 }
 
-void Volume::PrepareNextElementForRemove(DictionaryElement*& ElementHolder) {
+void Volume::GoToTheNext(DictionaryElement*& ElementHolder) {
 	
 	ElementHolder = ElementHolder->getNext();
 
@@ -187,6 +194,11 @@ void Volume::RangeException() const {
 	throw Message;
 }
 
+void Volume::NotFoundException() const {
+	Exception Message = "Not found\n";
+	throw Message;
+}
+
 
 void Volume::PrependFirst( const Word& ToPrepend ) {
 
@@ -253,6 +265,27 @@ void Volume::Prepend( const Word& ToPrepend ) {
 	} else {
 		PrependOther(ToPrepend);
 	}
+
+}
+
+const Word& Volume::Find( const WatchWord& phrase ) {
+
+	DictionaryElement* ElementHolder = FirstWord;
+
+	for ( unsigned int Idx = 0 ; Idx < Size() ; ++Idx ) {
+		if ( isSearchedElement(ElementHolder, phrase)	) 
+			return ElementHolder->getWord();
+		else GoToTheNext(ElementHolder);
+	}
+	
+	NotFoundException();	
+
+}
+
+void Volume::Remove( const WatchWord& phrase ) {
+
+
+
 
 }
 

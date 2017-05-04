@@ -16,6 +16,7 @@ class List {
 
 		virtual Element& setWord(const WatchWord&) = 0;
 */
+		virtual const Element& Find( const WatchWord& ) = 0;
 		virtual const Element& getWord(const WatchWord&) const {};
 
 };

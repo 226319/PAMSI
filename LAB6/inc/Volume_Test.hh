@@ -11,5 +11,6 @@ void Append_getWord_Test();
 //void setWord_Test();
 void Size_Test();
 void Prepend_Test();
+void Find_Test();
 
 #endif

@@ -23,6 +23,7 @@ class Volume: public List {
 	bool isNotEmpty() const;
 	bool isFirstWord() const;
 	bool isSizeIsGreaterThan( const ElementNumber& ) const;
+	bool isSearchedElement(DictionaryElement*&, const WatchWord& ) const;
 
 	void RemoveAllElements();
 	void RemoveElement(DictionaryElement*&);
@@ -36,10 +37,11 @@ class Volume: public List {
 	DictionaryElement* SearchFromEnd(const ElementNumber& IndexOfElement) const;
 	DictionaryElement* SearchFromBeginning(const ElementNumber& IndexOfElement) const; 
 
-	void PrepareNextElementForRemove(DictionaryElement*&);
+	void GoToTheNext(DictionaryElement*&);
 	void setToNull(DictionaryElement*);
 
 	void RangeException() const;
+	void NotFoundException() const;
 	inline ElementNumber HalfOfVolumeSize() const { return WordCounter/2; }
 	inline ElementNumber IndexOfLastElement() const { return (WordCounter-1); }
 
@@ -60,8 +62,8 @@ class Volume: public List {
 	/*
 	void Remove( const WatchWord& );
 	Word& setWord( const ElementNumber& );
-	Word& Find( const WatchWord& );
 */
+	const Word& Find( const WatchWord& );
 	void Prepend( const Word&);
 
 	const NumberOfWords& Size() const;

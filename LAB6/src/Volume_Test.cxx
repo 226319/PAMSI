@@ -60,5 +60,26 @@ void Prepend_Test() {
 
 }
 
+void Find_Test() {
+
+	Volume NewOne;
+	Word   First("FirstWord","First word definition");
+	Word	 Third("Third Worc", "Third word definition");
+	const unsigned int SIZE = 10;
+
+
+	for ( unsigned int i = 0; i < SIZE; ++i  )
+		NewOne.Append(First);
+	
+	NewOne.Append(Third);
+
+	for ( unsigned int i = 0; i < SIZE; ++i  )
+		NewOne.Append(First);
+
+	BOOST_CHECK(NewOne.Find("Third Worc") == Third);
+	BOOST_CHECK_THROW(NewOne.Find("something"), std::string);
+
+}
+
 
 
