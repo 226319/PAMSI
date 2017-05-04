@@ -2,7 +2,9 @@
 #define _VOLUME_HH
 
 #include "DictionaryElement.hh"
+#include "Word.hh"
 #include "List.hh"
+
 #include <iostream>
 
 typedef unsigned int NumberOfWords;
@@ -19,7 +21,7 @@ class Volume: public List {
 	bool isMoreThanOneElement() const;
 	bool isEmpty() const;
 	bool isNotEmpty() const;
-	bool isFirstWordToAppend() const;
+	bool isFirstWord() const;
 	bool isSizeIsGreaterThan( const ElementNumber& ) const;
 
 	void RemoveAllElements();
@@ -31,13 +33,18 @@ class Volume: public List {
 	
 	void getElementToRemove(DictionaryElement*&, DictionaryElement*&);
 	DictionaryElement* const getElement( const ElementNumber& ) const;
+	DictionaryElement* SearchFromEnd(const ElementNumber& IndexOfElement) const;
+	DictionaryElement* SearchFromBeginning(const ElementNumber& IndexOfElement) const; 
 
 	void PrepareNextElementForRemove(DictionaryElement*&);
 	void setToNull(DictionaryElement*);
 
 	void RangeException() const;
+	inline ElementNumber HalfOfVolumeSize() const { return WordCounter/2; }
 	inline ElementNumber IndexOfLastElement() const { return (WordCounter-1); }
 
+	void PrependFirst( const Word& );
+	void PrependOther( const Word& );
 
 	public:
 
@@ -47,14 +54,16 @@ class Volume: public List {
 
 	virtual ~Volume();
 	
-	void Append( const Word& );
+	void Append(const Word&);
 
 	const Word& getWord( const ElementNumber& ) const;
 	/*
 	void Remove( const WatchWord& );
-	Word& setWord( const ElementNumber&);
-
+	Word& setWord( const ElementNumber& );
+	Word& Find( const WatchWord& );
 */
+	void Prepend( const Word&);
+
 	const NumberOfWords& Size() const;
 
 

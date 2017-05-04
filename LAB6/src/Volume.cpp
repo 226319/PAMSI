@@ -68,7 +68,7 @@ bool Volume::isNotEmpty() const {
 	else return false;
 }
 
-bool Volume::isFirstWordToAppend() const {
+bool Volume::isFirstWord() const {
 	if ( WordCounter ) return false;
 	else return true;
 }
@@ -143,16 +143,12 @@ DictionaryElement* const Volume::getElement( const ElementNumber& IndexOfElement
 	if ( IndexOfElement == IndexOfLastElement() ) {
 		return LastWord;
 	
-	} else {
+	} else if ( IndexOfElement < HalfOfVolumeSize() ){
+		return SearchFromBeginning(IndexOfElement);
 	
-		DictionaryElement* SearchedElement = FirstWord;
-
-		for ( unsigned int idx = 0; idx < IndexOfElement; ++idx ) {
-			SearchedElement = SearchedElement->getNext();
-		}
+	} else 
+		return SearchFromEnd(IndexOfElement);
 	
-		return SearchedElement;
-	}
 
 
 }
@@ -161,6 +157,27 @@ void Volume::setToNull( DictionaryElement*  ElementToSet ) {
 
 	ElementToSet = nullptr;
 
+}
+		
+DictionaryElement* Volume::SearchFromBeginning(const ElementNumber& IndexOfElement) const { 
+		DictionaryElement* SearchedElement = FirstWord;
+		
+		for ( unsigned int idx = 0; idx < IndexOfElement; ++idx ) {
+			SearchedElement = SearchedElement->getNext();
+		}
+
+		return SearchedElement;
+}
+
+
+DictionaryElement* Volume::SearchFromEnd(const ElementNumber& IndexOfElement) const { 
+	DictionaryElement* SearchedElement = LastWord;
+		
+	for ( unsigned int idx = IndexOfLastElement(); idx > IndexOfElement; --idx ) {
+			SearchedElement = SearchedElement->getPrevious();
+	}
+	
+	return SearchedElement;
 }
 
 
@@ -171,6 +188,34 @@ void Volume::RangeException() const {
 }
 
 
+void Volume::PrependFirst( const Word& ToPrepend ) {
+
+	DictionaryElement* newWord = new DictionaryElement;
+
+	newWord->setWord() = ToPrepend;
+
+	FirstWord = newWord;
+	LastWord = newWord;
+
+	setToNull(newWord);
+	++WordCounter;
+
+}
+
+void Volume::PrependOther( const Word& ToPrepend )  {
+
+	DictionaryElement* newWord = new DictionaryElement;
+
+	newWord->setWord() = ToPrepend;
+
+	newWord->setNext(FirstWord);
+	FirstWord->setPrevious(newWord);
+	FirstWord = newWord;
+	
+	setToNull(newWord);
+	++WordCounter;
+}
+
 
 //-------------------------------------| End |----------------------------------
 
@@ -179,9 +224,9 @@ void Volume::RangeException() const {
 
 void Volume::Append( const Word& WordToAppend ) {
 
-	if ( isFirstWordToAppend() ) {
+	if ( isFirstWord() ) {
 		
-	AppendFirstWord( WordToAppend);
+	AppendFirstWord( WordToAppend );
 
 	} else {
 
@@ -201,10 +246,21 @@ const Word& Volume::getWord( const ElementNumber& IndexOfElement ) const {
 
 }
 
+void Volume::Prepend( const Word& ToPrepend ) {
+
+	if ( isFirstWord() ) {
+		PrependFirst(ToPrepend);
+	} else {
+		PrependOther(ToPrepend);
+	}
+
+}
+
+
 
 const NumberOfWords& Volume::Size() const {
 	return WordCounter;
 }
 
 
-
+//-------------------------------------| End |----------------------------------

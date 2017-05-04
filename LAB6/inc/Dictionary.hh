@@ -1,12 +1,13 @@
-#ifndef _SLOWNIK_HH
-#define _SLOWNIK_HH
+#ifndef _Dictionary_HH
+#define _Dictionary_HH
 
-#include "TablicaAsocjacyjna.hh"
+#include "HashTable.hh"
+#include "List.hh"
 
 typedef std::string Haslo;
 
 
-class Slownik: public TablicaAsocjacyjna {
+class Slownik: public TablicaAsocjacyjna, private List {
 
 	Tom* ListaTomow;
 

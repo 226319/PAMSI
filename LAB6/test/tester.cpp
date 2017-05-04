@@ -29,6 +29,7 @@ test_suite* init_unit_test_suite( int argc, char* argv[] ) {
 	test_suite* VolumeSuite = BOOST_TEST_SUITE( "Volume_TestSuite" );
 	VolumeSuite->add( BOOST_TEST_CASE( &Append_getWord_Test ) );
 	VolumeSuite->add( BOOST_TEST_CASE( &Size_Test ) );
+	VolumeSuite->add( BOOST_TEST_CASE( &Prepend_Test ) );
 	
 
 	framework::master_test_suite().add( WordSuite );

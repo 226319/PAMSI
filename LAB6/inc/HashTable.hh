@@ -1,10 +1,10 @@
-#ifndef _TABLICA_ASOC_HH
-#define _TABLICA_ASOC_HH
+#ifndef _HashTable_HH
+#define _HashTable_HH
 
 #include "List.hh"
 #include "Element.hh"
 
-class HashArray {
+class HashTable {
 
 
 
