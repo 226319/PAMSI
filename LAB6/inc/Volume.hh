@@ -44,9 +44,14 @@ class Volume: public List {
 	void NotFoundException() const;
 	inline ElementNumber HalfOfVolumeSize() const { return WordCounter/2; }
 	inline ElementNumber IndexOfLastElement() const { return (WordCounter-1); }
+	inline void DecreaseCounter() { --WordCounter; }
 
 	void PrependFirst( const Word& );
 	void PrependOther( const Word& );
+
+	void Extract( DictionaryElement*& );
+	
+	DictionaryElement* FindElement( const WatchWord& );
 
 	public:
 
@@ -57,20 +62,19 @@ class Volume: public List {
 	virtual ~Volume();
 	
 	void Append(const Word&);
+	void Prepend( const Word&);
+	void Remove( const WatchWord& );
 
 	const Word& getWord( const ElementNumber& ) const;
-	/*
-	void Remove( const WatchWord& );
+	Word& Find( const WatchWord& );
 	Word& setWord( const ElementNumber& );
-*/
-	const Word& Find( const WatchWord& );
-	void Prepend( const Word&);
 
 	const NumberOfWords& Size() const;
 
 
 
 
+	friend std::ostream& operator<<( std::ostream& , const Volume& );
 
 };
 

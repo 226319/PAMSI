@@ -8,9 +8,10 @@
 
 void Constructor_Test();
 void Append_getWord_Test();
-//void setWord_Test();
+void Volume_setWord_Test();
 void Size_Test();
 void Prepend_Test();
 void Find_Test();
+void Remove_Test();
 
 #endif

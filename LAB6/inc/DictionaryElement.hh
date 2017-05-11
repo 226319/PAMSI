@@ -32,7 +32,7 @@ class DictionaryElement: public Node {
 
 };
 
-
+	std::ostream& operator<<( std::ostream& , const DictionaryElement& );
 
 
 #endif

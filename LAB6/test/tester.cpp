@@ -2,6 +2,7 @@
 #include "DictionaryElement_Test.hh"
 #include "Word_Test.hh"
 #include "Volume_Test.hh"
+#include "Dictionary_Test.hh"
 
 using namespace boost::unit_test;
 
@@ -31,11 +32,16 @@ test_suite* init_unit_test_suite( int argc, char* argv[] ) {
 	VolumeSuite->add( BOOST_TEST_CASE( &Size_Test ) );
 	VolumeSuite->add( BOOST_TEST_CASE( &Prepend_Test ) );
 	VolumeSuite->add( BOOST_TEST_CASE( &Find_Test ) );
-	
+	VolumeSuite->add( BOOST_TEST_CASE( &Remove_Test ) );
+	VolumeSuite->add( BOOST_TEST_CASE( &Volume_setWord_Test ) );
+		
+	test_suite* DictionarySuite = BOOST_TEST_SUITE( "Dictionary_TestSuite" );
+	DictionarySuite->add( BOOST_TEST_CASE( &wordAccess_Test ) );
 
 	framework::master_test_suite().add( WordSuite );
 	framework::master_test_suite().add( DictionaryElementSuite );
 	framework::master_test_suite().add( VolumeSuite );
+	framework::master_test_suite().add( DictionarySuite );
 
 	return 0;
 

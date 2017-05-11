@@ -1,6 +1,7 @@
 #ifndef _WORD_HH
 #define _WORD_HH
 
+#include <iostream>
 #include "Element.hh"
 #include <string>
 
@@ -26,6 +27,8 @@ class Word : public Element {
 
 	bool operator==(const Word&) const;
 };
+
+	std::ostream& operator<<( std::ostream& , const Word& );
 
 
 

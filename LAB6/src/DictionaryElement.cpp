@@ -64,6 +64,14 @@ void DictionaryElement::setPrevious(DictionaryElement* anotherElement ) {
 }
 
 
-//------------------------| Public Methods |---------------------------
+//----------------------------------| End |---------------------------
+
+std::ostream& operator<< ( std::ostream& stream, const DictionaryElement& Elem ) {
+
+		stream << Elem.getWord();
+
+}
+
+
 
 

@@ -10,13 +10,11 @@ class List {
 		virtual ~List() {};
 
 		virtual void Append(const Element&) {};
-/*	
-		virtual void Prepend(const Element&) =0;
-		virtual void Remove(const WatchWord&) = 0;
+		virtual void Prepend(const Element&){};
+		virtual void Remove(const WatchWord&){};
 
-		virtual Element& setWord(const WatchWord&) = 0;
-*/
-		virtual const Element& Find( const WatchWord& ) = 0;
+		virtual Element& setWord(const WatchWord&){};
+		virtual Element& Find( const WatchWord& ){};
 		virtual const Element& getWord(const WatchWord&) const {};
 
 };

@@ -14,7 +14,7 @@ class HashTable {
 	virtual const Definition& operator[] ( const WatchWord&) const = 0;
 
 
-}
+};
 
 
 

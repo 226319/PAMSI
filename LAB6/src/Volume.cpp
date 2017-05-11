@@ -214,6 +214,19 @@ void Volume::PrependFirst( const Word& ToPrepend ) {
 
 }
 
+void Volume::Extract( DictionaryElement*& ToExtract ) {
+
+	DictionaryElement* TmpElement;
+
+	TmpElement = ToExtract->getNext();
+	TmpElement->setPrevious(ToExtract->getPrevious());
+	
+	TmpElement = ToExtract->getPrevious();
+	TmpElement->setNext(ToExtract->getNext());
+
+
+}
+
 void Volume::PrependOther( const Word& ToPrepend )  {
 
 	DictionaryElement* newWord = new DictionaryElement;
@@ -226,6 +239,20 @@ void Volume::PrependOther( const Word& ToPrepend )  {
 	
 	setToNull(newWord);
 	++WordCounter;
+}
+
+DictionaryElement* Volume::FindElement( const WatchWord& phrase ) {
+
+	DictionaryElement* ElementHolder = FirstWord;
+
+	for ( unsigned int Idx = 0 ; Idx < Size() ; ++Idx ) {
+		if ( isSearchedElement(ElementHolder, phrase)	) 
+			return ElementHolder;
+		else GoToTheNext(ElementHolder);
+	}
+	
+	NotFoundException();	
+
 }
 
 
@@ -258,6 +285,17 @@ const Word& Volume::getWord( const ElementNumber& IndexOfElement ) const {
 
 }
 
+Word& Volume::setWord( const ElementNumber& IndexOfElement ) {
+
+	if ( isSizeIsGreaterThan(IndexOfElement) ) {
+		
+		DictionaryElement* WantedItem = getElement(IndexOfElement);
+		return WantedItem->setWord();
+
+	} else RangeException();	
+
+}
+
 void Volume::Prepend( const Word& ToPrepend ) {
 
 	if ( isFirstWord() ) {
@@ -268,27 +306,24 @@ void Volume::Prepend( const Word& ToPrepend ) {
 
 }
 
-const Word& Volume::Find( const WatchWord& phrase ) {
+Word& Volume::Find( const WatchWord& phrase ) {
 
-	DictionaryElement* ElementHolder = FirstWord;
-
-	for ( unsigned int Idx = 0 ; Idx < Size() ; ++Idx ) {
-		if ( isSearchedElement(ElementHolder, phrase)	) 
-			return ElementHolder->getWord();
-		else GoToTheNext(ElementHolder);
-	}
+	DictionaryElement* ElementHolder = FindElement(phrase);
 	
-	NotFoundException();	
+	return ElementHolder->setWord();
 
 }
 
 void Volume::Remove( const WatchWord& phrase ) {
+	DictionaryElement* ToRemove;
 
-
-
+	ToRemove = FindElement( phrase );
+	Extract(ToRemove);
+	RemoveElement(ToRemove);
+	DecreaseCounter();
+	setToNull(ToRemove);
 
 }
-
 
 
 const NumberOfWords& Volume::Size() const {
@@ -297,3 +332,23 @@ const NumberOfWords& Volume::Size() const {
 
 
 //-------------------------------------| End |----------------------------------
+
+std::ostream& operator<< ( std::ostream& stream, const Volume& Vol ) {
+
+	DictionaryElement* ElementHolder = Vol.FirstWord;
+
+	for ( unsigned int Idx = 0; Idx < Vol.Size(); ++Idx) {
+	
+		std::cout << *ElementHolder << std::endl;
+		ElementHolder = ElementHolder->getNext() ;
+		
+	}
+
+}
+
+
+
+
+
+
+

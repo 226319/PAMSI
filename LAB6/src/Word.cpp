@@ -60,4 +60,12 @@ else return false;
 //--------------------------| End |------------------------------
 
 
+std::ostream& operator<< ( std::ostream& stream, const Word& Term ) {
+
+	stream << Term.getWatchWord();
+	stream << '\t';
+	stream << Term.getDefinition();	
+
+	return stream;
+}
 
