@@ -15,19 +15,15 @@ class Dictionary: public HashTable {
 
 	const VolumeNumber Hash(const WatchWord&) const;
 	//void Rehash(const WatchWord&);
-	//void NotFoundException();
 	Word& CreateNewWord(const WatchWord& );
 	void Append(const Word&) ;
-	// void Prepend(const Word&);
-	// void Remove(const WatchWord&);
 	inline void ExecuteException( const Exception& Exc ) const { std::cerr << Exc; } 
 
 	Word* setWord(const WatchWord&);
 	Word& Find( const WatchWord& ) const;
 	Word& setAppendedWord( const WatchWord& );
 	const Word* getWord(const WatchWord&) const ;
-
-
+	inline NumberOfVolumes& Size() { return DictionarySize; }
 	
 	
 	public:
@@ -37,8 +33,8 @@ class Dictionary: public HashTable {
 
 	const Definition& operator[]( const WatchWord& ) const;
 	Definition& operator[]( const WatchWord& );
-	// Resize( const NumberOfVolumes& );
 	inline const NumberOfVolumes& Size() const { return DictionarySize; }
+	void Remove(const WatchWord&);
 
 	void Show();
 };

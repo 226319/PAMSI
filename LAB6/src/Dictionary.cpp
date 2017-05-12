@@ -124,6 +124,11 @@ void Dictionary::Show() {
 		
 	}
 
+}
+
+void Dictionary::Remove( const WatchWord& Term ) {
+
+	VolumeList[ Hash(Term) ].Remove(Term);
 
 }
 

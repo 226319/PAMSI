@@ -19,10 +19,8 @@ void wordAccess_Test() {
 
 	BOOST_CHECK_EQUAL( NewOne["Word45"], "Definition of Word45" );
 
-	NewOne.Show();
 
 }
-
 
 
 
