@@ -19,26 +19,6 @@ class Timer: public TimeController {
 	unsigned int _ProblemSize;
 	clock_t _TestTime;
 	unsigned int _NumberOfRealization;
-
-	unsigned int& ProblemSize();
-	unsigned int& NumberOfRealization();
-	double& Result(const unsigned int&);
-	clock_t& TestTime();
-	const unsigned int& ProblemSize() const;
-	const unsigned int& NumberOfRealization() const;
-	const double& Result(const unsigned int&) const;
-	const clock_t& TestTime() const;
-	
-	void SaveResult( const unsigned int&);
-
-	inline unsigned int isSomethingWasRealized() const 
-	{ return _NumberOfRealization; };	
-
-	void MemoryViolenceException();
-	double SumOfResults() const; 
-	double Average() const;
-	void Start();
-	void Stop(const unsigned int &);
 	
 	public:
 	
@@ -50,6 +30,29 @@ class Timer: public TimeController {
 	void Save(std::ostream & ) const;
 	void SaveSummarized(std::ostream & ) const;
 
+	private:
+
+	unsigned int& ProblemSize();
+	unsigned int& NumberOfRealization();
+	double& Result(const unsigned int&);
+	clock_t& TestTime();
+	
+	const unsigned int& ProblemSize() const;
+	const unsigned int& NumberOfRealization() const;
+	const double& Result(const unsigned int&) const;
+	const clock_t& TestTime() const;
+	
+
+	inline unsigned int isSomethingWasRealized() const 
+	{ return _NumberOfRealization; };	
+
+	void SaveResult( const unsigned int&);
+	void MemoryViolenceException();
+	double SumOfResults() const; 
+	double Average() const;
+	
+	void Start();
+	void Stop(const unsigned int &);
 };
 
 #endif 

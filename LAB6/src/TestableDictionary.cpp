@@ -43,7 +43,7 @@ void TestableDictionary::FillDictionary( const DictionaryTestSettings& Settings 
 
 void TestableDictionary::Test( const DictionaryTestSettings& Settings) {
 
-(*DictionaryToTest)[Settings.Term()];
+ (*DictionaryToTest)[Settings.Term()];
 
 }
 
