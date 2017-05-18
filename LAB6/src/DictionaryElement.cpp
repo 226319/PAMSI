@@ -70,6 +70,7 @@ std::ostream& operator<< ( std::ostream& stream, const DictionaryElement& Elem )
 
 		stream << Elem.getWord();
 
+	return stream;
 }
 
 

@@ -17,9 +17,29 @@ class Volume: public List {
 	DictionaryElement* LastWord;
 	NumberOfWords WordCounter;
 
-	bool isOneElement() const;
-	bool isMoreThanOneElement() const;
-	bool isEmpty() const;
+
+	public:
+
+	Volume();
+	Volume(const Volume&);
+	Volume& operator=(const Volume&);
+
+	virtual ~Volume();
+	
+	void Append(const Word&);
+	void Prepend( const Word&);
+	void Remove( const WatchWord& );
+
+	const Word& getWord( const ElementNumber& ) const;
+	Word& Find( const WatchWord& );
+	Word& setWord( const ElementNumber& );
+
+	const NumberOfWords& Size() const;
+	
+	friend std::ostream& operator<<( std::ostream& , const Volume& );
+
+	private:
+
 	bool isNotEmpty() const;
 	bool isFirstWord() const;
 	bool isSizeIsGreaterThan( const ElementNumber& ) const;
@@ -50,31 +70,9 @@ class Volume: public List {
 	void PrependOther( const Word& );
 
 	void Extract( DictionaryElement*& );
-	
 	DictionaryElement* FindElement( const WatchWord& );
-
-	public:
-
-	Volume();
-	Volume(const Volume&);
-	Volume& operator=(const Volume&);
-
-	virtual ~Volume();
 	
-	void Append(const Word&);
-	void Prepend( const Word&);
-	void Remove( const WatchWord& );
 
-	const Word& getWord( const ElementNumber& ) const;
-	Word& Find( const WatchWord& );
-	Word& setWord( const ElementNumber& );
-
-	const NumberOfWords& Size() const;
-
-
-
-
-	friend std::ostream& operator<<( std::ostream& , const Volume& );
 
 };
 

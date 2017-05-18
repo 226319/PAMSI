@@ -10,7 +10,8 @@ class DictionaryTestSettings: public virtual TestSettings {
 	unsigned int _ProblemSize;
 	unsigned int _NumberOfRealization;
 	unsigned int _NumberOfWords;
-	
+	unsigned int _HashType;
+
 	WatchWord _Term;
 	Definition _TermDefinition;
 	
@@ -42,6 +43,9 @@ class DictionaryTestSettings: public virtual TestSettings {
 	inline const unsigned int& NumberOfWords() const { return _NumberOfWords; }
 
 
+	inline unsigned int& HashType() { return _HashType; }
+
+	inline const unsigned int& HashType() const { return _HashType; }
 
 
 

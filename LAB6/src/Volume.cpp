@@ -46,22 +46,7 @@ Volume::~Volume() {
 
 //--------------------------------| Private Methods |----------------------------
 
-bool Volume::isOneElement() const {
 
-	if ( WordCounter == 1 ) return true;
-	else return false;
-
-}
-
-bool Volume::isMoreThanOneElement() const {
-	if ( WordCounter > 1 ) return true;
-	else return false;
-}
-
-bool Volume::isEmpty() const {
-	if ( WordCounter ) return false;
-	else return true;
-}
 
 bool Volume::isNotEmpty() const {
 	if ( WordCounter ) return true;
@@ -345,10 +330,6 @@ std::ostream& operator<< ( std::ostream& stream, const Volume& Vol ) {
 	}
 
 }
-
-
-
-
 
 
 

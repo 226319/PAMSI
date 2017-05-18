@@ -8,6 +8,7 @@ Dictionary::Dictionary( const NumberOfVolumes& _Size ) {
 	VolumeList = new Volume[_Size];
 	isFound = false;
 	DictionarySize = _Size;
+	HashFunctionType = 0;
 
 }
 
@@ -21,21 +22,44 @@ Dictionary::~Dictionary() {
 //-----------------------------------| END |------------------------------------
 
 //---------------------------| Private Methods |---------------------------------
+const VolumeNumber Dictionary::MultiplicHash(const WatchWord& Term) const {
+
+	Key HashKey = 0; 
+
+	for ( unsigned int Idx = 0; Idx < Term.size(); ++Idx ) {
+		HashKey += pow(HashBase,Idx)*Term[Idx]; ;
+	}
+	
+	HashKey *= HashConst;
+	HashKey *= (HashKey-floor(HashKey));
+
+	
+	return ((unsigned int)floor(HashKey) % DictionarySize);
+
+}
+
+const VolumeNumber Dictionary::ASCIISumHash(const WatchWord& Term) const {
+
+	VolumeNumber HashKey = 0; 
+
+	for ( unsigned int Idx = Term.size(); Idx > 0 ; --Idx ) {
+		HashKey += Term[Idx];
+	}
+	
+	return HashKey % DictionarySize;
+
+}
+
 
 const VolumeNumber Dictionary::Hash(const WatchWord& Term) const {
 
-	VolumeNumber HashedTerm = 0; 
-
-
-	for ( unsigned int Idx = 0; Idx < Term.size(); ++Idx ) {
-
-		HashedTerm += Term[Idx];
-
-	}
-	
-	return HashedTerm % DictionarySize;
+ if ( HashFunctionType ) 
+	 return ASCIISumHash(Term);
+ else 
+	 return MultiplicHash(Term);
 
 }
+
 
 
 Word& Dictionary::Find( const WatchWord& Term ) const {
@@ -129,6 +153,12 @@ void Dictionary::Show() {
 void Dictionary::Remove( const WatchWord& Term ) {
 
 	VolumeList[ Hash(Term) ].Remove(Term);
+
+}
+
+void Dictionary::SetHashFunctionType( const Flag& HashType ) {
+
+	HashFunctionType = HashType; 
 
 }
 

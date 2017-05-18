@@ -1,6 +1,8 @@
 #include "TestableDictionary.hh"
 
 
+//------------------------| Constructor and Destructor |-------------------------------
+
 TestableDictionary::TestableDictionary() {
 
 	DictionaryToTest = nullptr;
@@ -15,15 +17,9 @@ TestableDictionary::~TestableDictionary() {
 
 }
 
+//----------------------------| End |------------------------------------
 
-void TestableDictionary::PrepareToTest( const DictionaryTestSettings& Settings ) {
-
-	delete DictionaryToTest;
-	DictionaryToTest = new Dictionary(Settings.ProblemSize());
-	FillDictionary(Settings);
-
-}
-
+//----------------------------| Public Methods |------------------------------------
 
 void TestableDictionary::FillDictionary( const DictionaryTestSettings& Settings ) {
 
@@ -38,14 +34,28 @@ void TestableDictionary::FillDictionary( const DictionaryTestSettings& Settings 
 	(*DictionaryToTest)[Settings.Term()] = Settings.TermDefinition();
 
 }
+//----------------------------| End |------------------------------------
 
+//----------------------------| Public Methods |------------------------------------
 
+void TestableDictionary::PrepareToTest( const DictionaryTestSettings& Settings ) {
+
+	delete DictionaryToTest;
+	DictionaryToTest = new Dictionary(Settings.ProblemSize());
+	(*DictionaryToTest).SetHashFunctionType(Settings.HashType());
+	FillDictionary(Settings);
+
+}
 
 void TestableDictionary::Test( const DictionaryTestSettings& Settings) {
 
- (*DictionaryToTest)[Settings.Term()];
+ if ( (*DictionaryToTest)[Settings.Term()] != Settings.TermDefinition() ) 
+		 abort();
 
 }
+
+
+//----------------------------| End |------------------------------------
 
 
 
