@@ -6,18 +6,26 @@ typedef std::string Content;
 
 class Element {
 
+	Key PositionNumber;
+	Content ElementContent;
 
-	public:	
+
+	public:
+
+		~Element();
 		
-		const Key& getKey() const = 0;
-		Ket& setKey() = 0;
+		Element();
+		Element( const Key&, const Content& );
 		
-		const Content& getContent() const = 0;		
-		Content& setContent() = 0;
+		const Key& getKey() const;
+		Ket& setKey();
+		
+		const Content& getContent() const;		
+		Content& setContent();
 
 
 
-}
+};
 
 
 
