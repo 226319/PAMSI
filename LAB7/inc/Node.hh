@@ -1,7 +1,7 @@
 #ifndef _NODE_HH
 #define _NODE_HH
 
-#include "Element.hh"
+#include "Component.hh"
 
 
 class Node {
@@ -9,16 +9,18 @@ class Node {
 
 	public:
 
-		const Node&	getLeft() const = 0;
-		Node& setLeft() = 0;
+		virtual ~Node() {};
 
-		const Node& getRight() const = 0;
-		Node& setRight() = 0;
+		virtual Node* const getLeft() const {} ;
+		virtual void setLeft(Node*&) {};
 
-		const Node& getParent() = 0;
-		Node& setParent() = 0;
+		virtual Node* const  getRight() const {};
+		virtual void setRight(Node*&){}; 
 
-		const Element& getElement() const  = 0;
+		virtual Node* const getParent() {};
+		virtual void setParent(Node*&) {};
+
+		virtual const Component& getElement() const {};
 
 
 };

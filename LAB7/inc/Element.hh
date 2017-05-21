@@ -1,10 +1,9 @@
 #ifndef ELEMENT_HH
 #define ELEMENT_HH
 
-typedef unsigned int Key;
-typedef std::string Content;
+#include "Component.hh"
 
-class Element {
+class Element : public Component {
 
 	Key PositionNumber;
 	Content ElementContent;
@@ -18,7 +17,7 @@ class Element {
 		Element( const Key&, const Content& );
 		
 		const Key& getKey() const;
-		Ket& setKey();
+		Key& setKey();
 		
 		const Content& getContent() const;		
 		Content& setContent();

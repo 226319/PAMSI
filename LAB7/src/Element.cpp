@@ -22,7 +22,7 @@ Element::Element( const Key& NewPosNum, const Content& NewContent ) {
 
 
 
-Element::~Element() {};
+Element::~Element() {}
 
 
 //-----------------------------------| End |-----------------------------------

@@ -2,33 +2,41 @@
 #define _CHILDNODE_HH
 
 #include "Node.hh"
+#include "Element.hh"
 
-class ChildNode : public Node {
+class ChildNode : public virtual Node {
 
 
 	ChildNode* Parent;
 	ChildNode* RightChild;
 	ChildNode* LeftChild;
-	Element* NodeElement;
+	Element NodeElement;
 
 
 	public:
 
-		const ChildNode*&	getLeft() const = 0;
-		ChildNode*& setLeft() = 0;
+		
+		ChildNode();
+		ChildNode(const ChildNode&);
+		ChildNode(const Element&);
+		ChildNode& operator = (const ChildNode&);
+		virtual ~ChildNode();
+		
+		ChildNode* const getLeft() const;
+		void setLeft(ChildNode*& ) ;
 
-		const ChildNode& getRight() const = 0;
-		ChildNode*& setRight() = 0;
+		ChildNode* const  getRight() const;
+		void setRight(ChildNode*& ) ;
 
-		const ChildNode& getParent() = 0 const;
-		ChildNode*& setParent() = 0;
+		ChildNode* const getParent()  const;
+		void setParent(ChildNode*& ) ;
 
-		const ChildNode*& getElement() = 0 const; 
+		const Element& getElement()  const; 
 		
 
 
 
-}
+} ;
 
 
 
