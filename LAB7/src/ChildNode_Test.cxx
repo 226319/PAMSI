@@ -9,12 +9,11 @@ void CN_Constructors_Test() {
 	BOOST_CHECK(Root.getLeft() == nullptr);
 	BOOST_CHECK(Root.getRight() == nullptr);
 	BOOST_CHECK(Root.getParent() ==  nullptr);
-	BOOST_CHECK_EQUAL(Root.getElement().getKey(), 0 );
-	BOOST_CHECK_EQUAL(Root.getElement().getContent(), "No Content" );
+	
+	BOOST_CHECK(Root.getElement() == nullptr );
 
-	BOOST_CHECK_EQUAL(AnotherOne.getElement().getKey(), 44 );
-	BOOST_CHECK_EQUAL(AnotherOne.getElement().getContent(), "Content" );
-
+	BOOST_CHECK_EQUAL(AnotherOne.getElement()->getKey(), 44 );
+	BOOST_CHECK_EQUAL(AnotherOne.getElement()->getContent(), "Content" );
 
 }
 
@@ -37,14 +36,11 @@ void CN_CpyConstructor_Test() {
 	BOOST_CHECK(Root.getLeft() == &Left );
 	BOOST_CHECK(Root.getRight() == &Right);
 	BOOST_CHECK(Root.getParent() == &Parent );
-	BOOST_CHECK_EQUAL(Root.getElement().getKey(), 44 );
-	BOOST_CHECK_EQUAL(Root.getElement().getContent(), "Content" );
+	BOOST_CHECK_EQUAL(Root.getElement()->getKey(), 44 );
+	BOOST_CHECK_EQUAL(Root.getElement()->getContent(), "Content" );
 
 
 }
-
-
-
 
 
 

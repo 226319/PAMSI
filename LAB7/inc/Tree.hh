@@ -2,17 +2,18 @@
 #define _TREE_HH
 
 #include "Node.hh"
-
+#include "Element.hh"
 
 
 class Tree {
 
 
 	public:
-
-		void Add(const Element&) = 0;
-		void Delete(const Element&) = 0;
-		const Element& Search(const Key&) = 0;
+		virtual ~Tree() {};
+		
+		virtual void Add(const Component&) {};
+//		virtual void Delete(const Component&) = 0;
+//		virtual const Element& Search(const Key&) = 0;
 
 };
 

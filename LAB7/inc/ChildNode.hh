@@ -10,7 +10,7 @@ class ChildNode : public virtual Node {
 	ChildNode* Parent;
 	ChildNode* RightChild;
 	ChildNode* LeftChild;
-	Element NodeElement;
+	Element* NodeElement;
 
 
 	public:
@@ -25,13 +25,17 @@ class ChildNode : public virtual Node {
 		ChildNode* const getLeft() const;
 		void setLeft(ChildNode*& ) ;
 
-		ChildNode* const  getRight() const;
+		ChildNode* const getRight() const;
 		void setRight(ChildNode*& ) ;
 
 		ChildNode* const getParent()  const;
 		void setParent(ChildNode*& ) ;
 
-		const Element& getElement()  const; 
+		Element* const getElement()  const; 
+
+		inline bool isEmpty() const {
+			return ( NodeElement == nullptr );
+		}
 		
 
 
