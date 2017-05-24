@@ -11,7 +11,6 @@ class ChildNode : public Node {
 	ChildNode* RightChild;
 	ChildNode* LeftChild;
 	Element* NodeElement;
-	Color NodeColor;
 
 
 	public:
@@ -35,17 +34,6 @@ class ChildNode : public Node {
 
 		Element* const getElement()  const; 
 		void setElement( Element* ); 
-
-		const Color& getColor() const; 
-
-		Color& setColor(); 
-
-	private:
-
-		inline bool isEmpty() const {
-			return ( NodeElement == nullptr );
-		}
-		
 
 
 

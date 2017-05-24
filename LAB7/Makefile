@@ -4,7 +4,7 @@ CC := g++ # This is the main compiler
 SRCDIR := src
 OBJECTDIR := obj
 HEADERDIR := inc
-TARGET := lab6
+TARGET := lab7
 
 SRCEXT := cpp
 HEADEREXT := hh

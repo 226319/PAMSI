@@ -67,8 +67,7 @@ void BSTree::InorderWalk( ChildNode* Son) {
 	if ( Son != nullptr ) {
 		InorderWalk(Son->getLeft());
 		std::cout << Son->getElement()->getKey();
-		std::cout << ' ' << Son->getElement()->getContent();
-		std::cout << ' ' << Son->getColor() << std::endl ;
+		std::cout << ' ' << Son->getElement()->getContent() << std::endl ;
 
 		InorderWalk(Son->getRight());
 	}
@@ -306,7 +305,6 @@ void BSTree::CreateBalancedTree() {
 	
 		TempNode = TreeRoot;
 		for ( unsigned int Idx = 0; Idx < m; ++Idx) {
-			std::cerr << m << ' ' << Size() << std::endl;
 			TempNode = LeftRotate( TempNode );
 			TempNode = TempNode->getParent()->getRight();
 		}

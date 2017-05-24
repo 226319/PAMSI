@@ -3,7 +3,6 @@
 
 #include "Component.hh"
 
-enum Color { RED , BLACK };
 
 class Node {
 
@@ -22,10 +21,7 @@ class Node {
 		virtual void setParent(Node*&) {};
 
 		virtual Component* const getElement() const {};
-		
-		virtual const Color& getColor() const = 0;
-		virtual Color& setColor() = 0;
-
+		virtual void setElement( Component* ) {};
 };
 
 

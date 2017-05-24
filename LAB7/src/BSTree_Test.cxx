@@ -6,14 +6,16 @@ void BST_AddnSearch_Test() {
 	Element El(100, "Content1");
 
 		mytree.Add(El);
-	for ( int idx = 1; idx < 100 ; ++idx){
+	for ( int idx = 1; idx < 10000 ; ++idx){
 		Element ela(idx, "COnst");
 		mytree.Add(ela);
 		}
 
+	mytree.Balance();
+
 
 	Element lement = mytree.Search(54);
-
+	
 	BOOST_CHECK( lement.getKey() == 54 );
 	BOOST_CHECK( lement.getContent() == "COnst" );
 }

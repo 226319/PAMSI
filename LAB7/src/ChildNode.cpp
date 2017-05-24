@@ -9,7 +9,6 @@ ChildNode::ChildNode() {
 	RightChild = nullptr;
 	LeftChild = nullptr;
 	NodeElement = nullptr;
-	NodeColor = RED;
 
 }
 
@@ -18,7 +17,6 @@ ChildNode::ChildNode( const ChildNode& ChildToCopy) {
 	Parent = ChildToCopy.getParent();
 	RightChild = ChildToCopy.getRight();
 	LeftChild = ChildToCopy.getLeft();
-	NodeColor = ChildToCopy.getColor();
 
 	
 	NodeElement = new Element;
@@ -32,7 +30,6 @@ ChildNode::ChildNode( const Element& NewElement ) {
 	Parent = nullptr;
 	RightChild = nullptr;
 	LeftChild = nullptr;
-	NodeColor = RED;
 
 	NodeElement = new Element;
 	NodeElement->setKey() = NewElement.getKey();
@@ -45,7 +42,6 @@ ChildNode& ChildNode::operator = ( const ChildNode& ChildToCopy ) {
 	Parent = ChildToCopy.getParent();
 	RightChild = ChildToCopy.getRight();
 	LeftChild = ChildToCopy.getLeft();
-	NodeColor = ChildToCopy.getColor();
 	
 	NodeElement = new Element;
 	NodeElement->setKey() = ChildToCopy.getElement()->getKey();
@@ -99,14 +95,6 @@ void ChildNode::setParent(ChildNode*& ParentNode)  {
 
 Element* const ChildNode::getElement() const {
 	return NodeElement;
-}
-
-const Color& ChildNode::getColor() const {
-	return NodeColor; 
-}
-
-Color& ChildNode::setColor() { 
-	return NodeColor; 
 }
 
 void ChildNode::setElement( Element* ElementToCopy ) {
