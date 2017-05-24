@@ -4,13 +4,14 @@
 #include "Node.hh"
 #include "Element.hh"
 
-class ChildNode : public virtual Node {
+class ChildNode : public Node {
 
 
 	ChildNode* Parent;
 	ChildNode* RightChild;
 	ChildNode* LeftChild;
 	Element* NodeElement;
+	Color NodeColor;
 
 
 	public:
@@ -20,6 +21,7 @@ class ChildNode : public virtual Node {
 		ChildNode(const ChildNode&);
 		ChildNode(const Element&);
 		ChildNode& operator = (const ChildNode&);
+	
 		virtual ~ChildNode();
 		
 		ChildNode* const getLeft() const;
@@ -29,9 +31,16 @@ class ChildNode : public virtual Node {
 		void setRight(ChildNode*& ) ;
 
 		ChildNode* const getParent()  const;
-		void setParent(ChildNode*& ) ;
+		void setParent( ChildNode*& ) ;
 
 		Element* const getElement()  const; 
+		void setElement( Element* ); 
+
+		const Color& getColor() const; 
+
+		Color& setColor(); 
+
+	private:
 
 		inline bool isEmpty() const {
 			return ( NodeElement == nullptr );

@@ -1,8 +1,7 @@
 #include <boost/test/included/unit_test.hpp>
 #include "Element_Test.hh"
 #include "ChildNode_Test.hh"
-#include "AVLTree_Test.hh"
-//#include "Dictionary_Test.hh"
+#include "BSTree_Test.hh"
 
 using namespace boost::unit_test;
 
@@ -19,13 +18,14 @@ test_suite* init_unit_test_suite( int argc, char* argv[] ) {
 	ChildNodeSuite->add( BOOST_TEST_CASE( &CN_Constructors_Test ) ); 
 	ChildNodeSuite->add( BOOST_TEST_CASE( &CN_CpyConstructor_Test ) ); 
 
-	test_suite* AVLTreeSuite = BOOST_TEST_SUITE( "AVLTree_TestSuite" );
-	AVLTreeSuite->add( BOOST_TEST_CASE( &AVLT_AddnSearch_Test ) ); 
+	test_suite* BSTreeSuite = BOOST_TEST_SUITE( "BSTree_TestSuite" );
+	BSTreeSuite->add( BOOST_TEST_CASE( &BST_AddnSearch_Test ) ); 
+	BSTreeSuite->add( BOOST_TEST_CASE( &BST_Delete_Test ) ); 
 		
 
 	framework::master_test_suite().add( ElementSuite );
 	framework::master_test_suite().add( ChildNodeSuite );
-	framework::master_test_suite().add( AVLTreeSuite );
+	framework::master_test_suite().add( BSTreeSuite );
 
 	return 0;
 
