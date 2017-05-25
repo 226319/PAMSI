@@ -19,7 +19,7 @@ TEST_SOURCES := $(shell find $(SRCDIR) -type f -name *.$(TEST_SRCEXT))
 TEST_OBJECTS := $(patsubst $(SRCDIR)/%,$(OBJECTDIR)/%,$(TEST_SOURCES:.$(TEST_SRCEXT)=.o))
 
 # options
-CFLAGS :=  -Wall -pedantic -std=c++11
+CFLAGS := -Wall -pedantic -std=c++11
 LIB := 
 LIBT := -L -lboost_unit_test_framework 
 INC := -I $(HEADERDIR)

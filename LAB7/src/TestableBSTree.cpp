@@ -26,6 +26,8 @@ void TestableBSTree::FillBSTree( const BSTreeTestSettings& Settings ) {
 	{ 
 		Element ElemToAdd( I, "Content" );
 		BSTreeToTest->Add(ElemToAdd);	
+		if ( I%100 == 0 )
+			BSTreeToTest->Balance();
 	}
 
 
