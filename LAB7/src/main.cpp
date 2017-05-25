@@ -36,9 +36,6 @@ int main() {
 
 	Settings.NumberOfRealization() = NUMBER_OF_REALIZATION;
 
-	Output = "NonBalancedTree";	
-	Execute(Object,Settings,Clock,Output ) ;
-
 	Settings.Balance() = BalancedTree ;
 	Output = "BalancedTree";	
 	Execute(Object,Settings,Clock,Output );

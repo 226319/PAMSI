@@ -11,9 +11,6 @@ void BST_AddnSearch_Test() {
 		mytree.Add(ela);
 		}
 
-	mytree.Balance();
-
-
 	Element lement = mytree.Search(54);
 	
 	BOOST_CHECK( lement.getKey() == 54 );

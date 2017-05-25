@@ -47,19 +47,15 @@ void BSTree::NotFoundException() const {
 }
 
 ChildNode* BSTree::SearchNode( ChildNode* Son , const Key& searchKey ) {
-
-	if ( Son != nullptr ) {
 	
-		if ( isSearched(Son,searchKey) )  
-			return Son;
-		
-		if ( isInRightBranch(Son,searchKey) ) 
-			return SearchNode(Son->getRight(), searchKey) ;
-		else 
-			return SearchNode(Son->getLeft(), searchKey) ;
-	
-	} 
-
+	while( (Son != nullptr) && !(isSearched(Son,searchKey)) ) {
+		if ( isInRightBranch(Son,searchKey) ) {
+			Son = Son->getRight();
+		} else {
+			Son = Son->getLeft();
+		}
+	}
+		return Son;
 }
 
 void BSTree::InorderWalk( ChildNode* Son) {
@@ -160,7 +156,6 @@ ChildNode* BSTree::Maximum( ChildNode* Son ) {
 
 ChildNode* BSTree::LeftRotate( ChildNode* Son ) {
 	
-	if ( Son->getRight() != nullptr ) {
 		ChildNode* MoveChild = Son->getRight();
 		ChildNode* helpNode = MoveChild->getLeft();
 		Son->setRight( helpNode );
@@ -185,14 +180,13 @@ ChildNode* BSTree::LeftRotate( ChildNode* Son ) {
 
 		MoveChild->setLeft(Son);
 		Son->setParent(MoveChild);
-	}
-	return Son;
+	
+		return Son;
 }
 
 
 ChildNode* BSTree::RightRotate( ChildNode* Son ) {
 	
-	if ( Son->getLeft() != nullptr ) {
 		ChildNode* MoveChild = Son->getLeft();
 		ChildNode* helpNode = MoveChild->getRight();
 		Son->setLeft( helpNode );
@@ -219,8 +213,8 @@ ChildNode* BSTree::RightRotate( ChildNode* Son ) {
 
 		MoveChild->setRight(Son);
 		Son->setParent(MoveChild);
-	}
-	return Son;
+	
+		return Son;
 }
 	
 
@@ -272,6 +266,7 @@ void BSTree::CreateBackBone() {
 
 		if ( TempNode->getLeft() != nullptr ) {
 			TempNode = RightRotate(TempNode);
+			TempNode = TempNode->getParent();
 		} else {
 			TempNode = TempNode->getRight();
 		}

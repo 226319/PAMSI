@@ -5,6 +5,7 @@
 #include "Testable.hh"
 #include "BSTreeTestSettings.hh"
 #include "TestSettings.hh"
+#include <iostream>
 
 class TestableBSTree: public Testable {
 
