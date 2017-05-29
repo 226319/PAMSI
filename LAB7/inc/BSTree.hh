@@ -27,9 +27,11 @@ class BSTree : public Tree {
 		Element& Search(const Key&);
 		void InorderTreeWalk();	
 		void Balance();
-	
-	 private:
+		void Show();
+	 
+	private:
 		
+		void Show( ChildNode* Son);
 		void CreateBackBone();
 		void RemoveTree(ChildNode*);
 		void CreateBalancedTree();

@@ -14,13 +14,13 @@ void Execute(TestableBSTree& Object, BSTreeTestSettings& Settings,Timer& Clock, 
 
 	std::fstream OutputStream(Output, std::ios::out);
 
-	std::cout << std::endl << Output;
+	std::cout << Output << std::endl;
 
 	for ( unsigned int idx = 1; idx < PROBLEM_SIZE; ++idx )	{
 		Settings.ProblemSize() = pow(10,idx);; 
 		Clock.Measure(Object,Settings);
 		Clock.SaveSummarized(OutputStream);
-		std::cout << std::endl << idx;
+		std::cout << idx << std::endl;
 	}
 
 	OutputStream.close();
