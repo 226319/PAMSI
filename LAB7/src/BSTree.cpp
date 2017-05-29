@@ -69,6 +69,17 @@ void BSTree::InorderWalk( ChildNode* Son) {
 	}
 }
 
+void BSTree::Show( ChildNode* Son) {
+
+	if ( Son != nullptr ) {
+		std::cout << Son->getElement()->getKey();
+		std::cout << ' ' << Son->getElement()->getContent() << std::endl ;
+
+		Show(Son->getLeft());
+		Show(Son->getRight());
+	}
+}
+
 
 void BSTree::Insert( ChildNode* Son ) {
 
@@ -371,6 +382,12 @@ Element& BSTree::Search( const Key& searchKey ) {
 void BSTree::InorderTreeWalk() {
 
 	InorderWalk(TreeRoot);
+
+}
+
+void BSTree::Show() {
+
+	Show(TreeRoot);
 
 }
 

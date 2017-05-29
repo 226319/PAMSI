@@ -24,12 +24,11 @@ void TestableBSTree::FillBSTree( const BSTreeTestSettings& Settings ) {
 
 	for ( unsigned int I = 0; I < Settings.ProblemSize(); ++I) 
 	{ 
-		Element ElemToAdd( rand()%(Settings.ProblemSize()-2), "Content" );
+		Element ElemToAdd( 1 + rand()%Settings.ProblemSize(), "Content" );
 		BSTreeToTest->Add(ElemToAdd);	
 	}
 
-	Element ElemToAdd( Settings.ProblemSize(), "Content" );
-	BSTreeToTest->Add(ElemToAdd);	
+	BSTreeToTest->Add( Element( 0, "Content" ) );	
 
 }
 //----------------------------| End |------------------------------------
@@ -51,7 +50,7 @@ void TestableBSTree::PrepareToTest( const BSTreeTestSettings& Settings ) {
 
 void TestableBSTree::Test( const BSTreeTestSettings& Settings) {
 
-	BSTreeToTest->Search( Settings.ProblemSize() );
+	BSTreeToTest->Search( 0 );
 
 }
 

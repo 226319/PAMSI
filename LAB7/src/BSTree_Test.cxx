@@ -6,7 +6,7 @@ void BST_AddnSearch_Test() {
 	Element El(100, "Content1");
 
 		mytree.Add(El);
-	for ( int idx = 1; idx < 10000 ; ++idx){
+	for ( int idx = 1; idx < 100 ; ++idx){
 		Element ela(idx, "COnst");
 		mytree.Add(ela);
 		}
